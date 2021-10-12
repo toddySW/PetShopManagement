@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class CustomerDAO {
     DatabaseServices db = new DatabaseServices();
     
-    public boolean Login(String userName, String passWord){
-        String sql = "";
+    public boolean login(String userName, String passWord){
+        String sql = "select * from customer where username = '" + userName +"' and password = '"+ passWord +"'";
         try {
             Statement st = db.Connection().createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -31,4 +31,40 @@ public class CustomerDAO {
         }
         return false;
     }
+    
+    public String[] quenMKUserName(String userName){
+        String sql = "select email, password from customer where username = '" + userName +"'";
+        String[] str = new String[2];
+        str[0] = "";
+        str[1] = "";
+        try {
+            Statement st = db.Connection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                str[0] = rs.getString("email");
+                str[1] = rs.getString("password");
+            }   
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return str;
+    }
+    public String[] quenMKEmail(String email){
+        String sql = "select email, password from customer where email = '"+ email +"'";
+        String[] str = new String[2];
+        str[0] = "";
+        str[1] = "";
+        try {
+            Statement st = db.Connection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                str[0] = rs.getString("email");
+                str[1] = rs.getString("password");
+            }   
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return str;
+    }
+    
 }

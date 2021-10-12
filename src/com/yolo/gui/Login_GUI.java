@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package com.yolo.gui;
+import com.yolo.bll.CustomerBLL;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 /**
  *
  * @author User
@@ -69,17 +71,32 @@ public class Login_GUI extends javax.swing.JFrame {
         btnDangNhap.setBackground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setForeground(new java.awt.Color(0, 153, 0));
         btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDangNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 111, -1));
 
         btnThoat.setBackground(new java.awt.Color(255, 255, 255));
         btnThoat.setForeground(new java.awt.Color(0, 153, 0));
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 111, -1));
 
         labQuenMK.setBackground(new java.awt.Color(255, 255, 255));
         labQuenMK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labQuenMK.setForeground(new java.awt.Color(0, 153, 0));
         labQuenMK.setText("Quên mật khẩu ?");
+        labQuenMK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labQuenMKMouseClicked(evt);
+            }
+        });
         jPanel1.add(labQuenMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 110, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/dog.jpg"))); // NOI18N
@@ -104,6 +121,29 @@ public class Login_GUI extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+        CustomerBLL customerBLL = new CustomerBLL();
+        if(customerBLL.login(txtUserName.getText(), txtPassword.getText())){
+            Home_GUI HOME = new Home_GUI();
+            this.setVisible(false);
+            HOME.setVisible(true);
+        }
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void labQuenMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labQuenMKMouseClicked
+        // TODO add your handling code here:
+        ForgotPassword_GUI forgotPassword_GUI = new ForgotPassword_GUI();
+        forgotPassword_GUI.setIconImage(new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/logo.png")).getImage());
+        forgotPassword_GUI.setLocationRelativeTo(null);
+        forgotPassword_GUI.setVisible(true);
+    }//GEN-LAST:event_labQuenMKMouseClicked
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     /**
      * @param args the command line arguments
