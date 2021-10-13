@@ -196,8 +196,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" alignment="1" pref="1160" max="32767" attributes="0"/>
-          <Component id="tabpaneMainBroad" alignment="0" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="1" max="32767" attributes="0"/>
+          <Component id="tabpaneMainBroad" min="-2" pref="1000" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -205,8 +205,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jToolBar1" min="-2" pref="101" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="tabpaneMainBroad" pref="724" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tabpaneMainBroad" min="-2" pref="600" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
