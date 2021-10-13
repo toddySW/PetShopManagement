@@ -5,8 +5,10 @@
         <group>
             <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dao/DatabaseServices.java</file>
             <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dao/CustomerDAO.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/Home_GUI.java</file>
             <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/ForgotPassword_GUI.java</file>
             <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/Login_GUI.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/petmanagementapp/PetManagementApp.java</file>
             <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/bll/CustomerBLL.java</file>
         </group>
     </open-files>

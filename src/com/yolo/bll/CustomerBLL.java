@@ -35,36 +35,6 @@ public class CustomerBLL {
         return flag;
     }
     
-//    public void quenMatKhau(String userNameOrEmail){
-//        try {
-//            String email = "";
-//            String pass = "";
-//            if(!userNameOrEmail.matches("[a-zA-Z0-9]+")){
-//                String[] obj = customerDAO.quenMKEmail(userNameOrEmail);
-//                email = obj[0];
-//                pass = obj[1];
-//                
-//            }
-//            else {
-//                String[] obj = customerDAO.quenMKUserName(userNameOrEmail);
-//                email = obj[0];
-//                pass = obj[1];
-//            }
-//            System.out.println(pass);
-//            if (pass != null || pass != "") {
-//                GmailSender sender = new GmailSender();
-//                sender.setSender("g3petshop@gmail.com", "umbala@000");
-//                sender.addRecipient(email);
-//                sender.setSubject("Đặt lại mật khẩu của bạn - Petshop");
-//                sender.setBody("Your password: " + pass);
-//                sender.send();
-//            }
-//            
-//            JOptionPane.showMessageDialog(new Login_GUI(), "Password đã gửi về Email");
-//        } catch (MessagingException ex) {
-//            Logger.getLogger(CustomerBLL.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     public void quenMatKhau(String userNameOrEmail) throws UnsupportedEncodingException{
         try {
             String email = "";

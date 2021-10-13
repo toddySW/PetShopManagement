@@ -5,19 +5,24 @@
  */
 package com.yolo.gui;
 import com.yolo.bll.CustomerBLL;
+import java.awt.Color;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 /**
  *
  * @author User
  */
 public class Login_GUI extends javax.swing.JFrame {
+    Color trans = new Color(0, 0, 0, 0);
     public Login_GUI() {
         initComponents();
         // set logo app
         setIconImage(new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/logo.png")).getImage());
         //canh giữa màn hình khi run form
         setLocationRelativeTo(null);
+        
+        jPanel1.setBackground(trans);
+        setBackground(trans);
+        
     }
 
     /**
@@ -38,35 +43,38 @@ public class Login_GUI extends javax.swing.JFrame {
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         labQuenMK = new javax.swing.JLabel();
+        lbExit = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 0));
         jLabel11.setText("Tài Khoản :");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 144, -1));
-        jPanel1.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 237, 29));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 144, -1));
+        jPanel1.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 237, 29));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 0));
         jLabel12.setText("Mật Khẩu :");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 144, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 144, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 153, 0));
         jLabel10.setText("Đăng Nhập");
         jLabel10.setToolTipText("");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 276, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 276, -1));
 
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 237, 29));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 237, 29));
 
         btnDangNhap.setBackground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setForeground(new java.awt.Color(0, 153, 0));
@@ -76,7 +84,7 @@ public class Login_GUI extends javax.swing.JFrame {
                 btnDangNhapActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDangNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 111, -1));
+        jPanel1.add(btnDangNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 112, -1));
 
         btnThoat.setBackground(new java.awt.Color(255, 255, 255));
         btnThoat.setForeground(new java.awt.Color(0, 153, 0));
@@ -86,7 +94,7 @@ public class Login_GUI extends javax.swing.JFrame {
                 btnThoatActionPerformed(evt);
             }
         });
-        jPanel1.add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 111, -1));
+        jPanel1.add(btnThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 200, 112, -1));
 
         labQuenMK.setBackground(new java.awt.Color(255, 255, 255));
         labQuenMK.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -97,10 +105,27 @@ public class Login_GUI extends javax.swing.JFrame {
                 labQuenMKMouseClicked(evt);
             }
         });
-        jPanel1.add(labQuenMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 110, -1));
+        jPanel1.add(labQuenMK, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 110, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/dog.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, 540));
+        lbExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/exit.png"))); // NOI18N
+        lbExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbExitMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lbExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/minimize.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/dog-background-login.png"))); // NOI18N
+        jLabel1.setText("x");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,9 +135,10 @@ public class Login_GUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -144,6 +170,16 @@ public class Login_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void lbExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbExitMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_lbExitMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        setState(ICONIFIED);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -187,8 +223,10 @@ public class Login_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labQuenMK;
+    private javax.swing.JLabel lbExit;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables

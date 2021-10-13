@@ -27,7 +27,7 @@ public class Home_GUI extends javax.swing.JFrame {
         // set logo app
         setIconImage(new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/logo.png")).getImage());
         //canh giữa màn hình khi run form
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);              
     }
 
     /**
