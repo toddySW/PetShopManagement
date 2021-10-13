@@ -6,6 +6,9 @@
 package com.yolo.gui;
 
 import com.yolo.bll.CustomerBLL;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -90,8 +93,12 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLayLaiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLayLaiMatKhauActionPerformed
-        // TODO add your handling code here:
-       customerBLL.quenMatKhau(txtUserNameOrEmail.getText());
+         try {
+             // TODO add your handling code here:
+             customerBLL.quenMatKhau(txtUserNameOrEmail.getText());
+         } catch (UnsupportedEncodingException ex) {
+             Logger.getLogger(ForgotPassword_GUI.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_btnLayLaiMatKhauActionPerformed
 
     /**

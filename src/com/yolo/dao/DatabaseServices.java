@@ -13,10 +13,11 @@ import java.sql.SQLException;
  * @author NGOCHUNG
  */
 public class DatabaseServices {   
-    private final String USERNAME = "QgimTbSdro";
-    private final String PASSWORD = "wINMslIpPO";
-    private final String DB_NAME = "QgimTbSdro";
-    private final String URL = "jdbc:mysql://remotemysql.com:3306/" + DB_NAME;
+    
+    protected final String USERNAME = "ngochung_petshop";
+    protected final String PASSWORD = "ngochung_petshop";
+    protected final String DB_NAME = "ngochung_petshop";
+    protected final String URL = "jdbc:mysql://ngochung.ga:3306/" + DB_NAME;
     public Connection Connection() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);       
