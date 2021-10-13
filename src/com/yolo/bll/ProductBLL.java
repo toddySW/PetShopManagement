@@ -8,8 +8,6 @@ package com.yolo.bll;
 import com.yolo.dao.ProductDAO;
 import com.yolo.dto.ProductDTO;
 import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,22 +19,21 @@ public class ProductBLL {
     public ArrayList<ProductDTO> getListProduct(){
         return productDAO.getListProduct();
     }
-    public void showProductTable(JTable t){
-        DefaultTableModel model = (DefaultTableModel) t.getModel();
+    public void showProductTable(DefaultTableModel model){
         model.setRowCount(0);
+        Object data[] = new Object[9];
         for (ProductDTO product : getListProduct()) {
-            int ProductID = product.getProductID();
-            String ProductName = product.getProductName();
-            String Description = product.getDescription();
-            Date DateOfManufacture = product.getDateOfManufacture();
-            String TypeID = product.getTypeID();
-            String nationID = product.getNationID();
-            int Price = product.getPrice();
-            String Images = product.getImages();
-            int Status = product.getStatus();
-            Object[] obj = {ProductID, ProductName, Description, DateOfManufacture, TypeID, nationID, Price, Images, Status};
-            System.out.println(ProductName);
-            model.addRow(obj);
+            data[0] = product.getProductID();
+            data[1] = product.getProductName();
+            data[2] = product.getDescription();
+            data[3] = product.getDateOfManufacture();
+            data[4] = product.getTypeID();
+            data[5] = product.getNationID();
+            data[6] = product.getPrice();
+            data[7] = product.getImages();
+            data[8] = product.getStatus();
+            model.addRow(data);
         }
     }
+    
 }

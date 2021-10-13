@@ -6,6 +6,7 @@
 package com.yolo.gui;
 
 import com.yolo.bll.ProductBLL;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,13 +14,18 @@ import com.yolo.bll.ProductBLL;
  */
 public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     ProductBLL productBLL = new ProductBLL();
+    DefaultTableModel model;
     /**
      * Creates new form QLSanPhamPanel_GUI
      */
     public QLSanPhamPanel_GUI() {
         initComponents();
-//        tblSanPham.setColumnModel(columnModel);
-        productBLL.showProductTable(tblSanPham);
+        model = (DefaultTableModel) tblSanPham.getModel();
+        Object[] obj = {"ProductID", "ProductName", "Description", "DateOfManufacture", "TypeID", "nationID", "Price", "Images", "Status"};
+        for (Object object : obj) {
+            model.addColumn(object);
+        }
+        productBLL.showProductTable(model);
     }
 
     /**
