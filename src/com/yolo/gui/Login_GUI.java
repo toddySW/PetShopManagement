@@ -124,7 +124,6 @@ public class Login_GUI extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/dog-background-login.png"))); // NOI18N
-        jLabel1.setText("x");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,7 +162,9 @@ public class Login_GUI extends javax.swing.JFrame {
         ForgotPassword_GUI forgotPassword_GUI = new ForgotPassword_GUI();
         forgotPassword_GUI.setIconImage(new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/logo.png")).getImage());
         forgotPassword_GUI.setLocationRelativeTo(null);
+        forgotPassword_GUI.Login_GUI = this;
         forgotPassword_GUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labQuenMKMouseClicked
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed

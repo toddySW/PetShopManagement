@@ -9,6 +9,7 @@ import com.yolo.bll.CustomerBLL;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
  */
 public class ForgotPassword_GUI extends javax.swing.JFrame {
      CustomerBLL customerBLL = new CustomerBLL();
+     public JFrame Login_GUI;
     /**
      * Creates new form ForgotPassword_GUI
      */
@@ -32,16 +34,26 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         txtUserNameOrEmail = new javax.swing.JTextField();
         btnLayLaiMatKhau = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lbExit = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 0));
         jLabel11.setText("Tài Khoản/Email:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 240, -1));
+
+        jPanel1.add(txtUserNameOrEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 500, 29));
 
         btnLayLaiMatKhau.setBackground(new java.awt.Color(255, 255, 255));
         btnLayLaiMatKhau.setForeground(new java.awt.Color(0, 153, 0));
@@ -51,43 +63,47 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
                 btnLayLaiMatKhauActionPerformed(evt);
             }
         });
+        jPanel1.add(btnLayLaiMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 130, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 153, 0));
         jLabel10.setText("Quên Mật Khẩu");
         jLabel10.setToolTipText("");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 540, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/minimize.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
+
+        lbExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/exit.png"))); // NOI18N
+        lbExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbExitMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lbExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/forgotpassbg.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUserNameOrEmail)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnLayLaiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10)
-                .addGap(63, 63, 63)
-                .addComponent(jLabel11)
-                .addGap(3, 3, 3)
-                .addComponent(txtUserNameOrEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLayLaiMatKhau)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
+
+        getAccessibleContext().setAccessibleParent(jLabel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -101,11 +117,26 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_btnLayLaiMatKhauActionPerformed
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        setState(ICONIFIED);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void lbExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbExitMouseClicked
+        // TODO add your handling code here:
+        Login_GUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lbExitMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLayLaiMatKhau;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbExit;
     private javax.swing.JTextField txtUserNameOrEmail;
     // End of variables declaration//GEN-END:variables
 }
