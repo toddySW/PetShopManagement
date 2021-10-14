@@ -6,6 +6,7 @@
 package com.yolo.gui;
 
 import com.yolo.bll.CustomerBLL;
+import java.awt.Color;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,13 +17,19 @@ import javax.swing.JFrame;
  * @author NGOCHUNG
  */
 public class ForgotPassword_GUI extends javax.swing.JFrame {
-     CustomerBLL customerBLL = new CustomerBLL();
-     public JFrame Login_GUI;
+    CustomerBLL customerBLL = new CustomerBLL();
+    public JFrame Login_GUI;
+    Color trans = new Color(0, 0, 0, 0);
+
     /**
      * Creates new form ForgotPassword_GUI
      */
     public ForgotPassword_GUI() {
         initComponents();
+        
+        jPanel1.setBackground(trans);
+        setBackground(trans);
+        
     }
 
     /**
@@ -51,9 +58,8 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 0));
         jLabel11.setText("Tài Khoản/Email:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 240, -1));
-
-        jPanel1.add(txtUserNameOrEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 500, 29));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 240, -1));
+        jPanel1.add(txtUserNameOrEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 350, 29));
 
         btnLayLaiMatKhau.setBackground(new java.awt.Color(255, 255, 255));
         btnLayLaiMatKhau.setForeground(new java.awt.Color(0, 153, 0));
@@ -63,13 +69,13 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
                 btnLayLaiMatKhauActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLayLaiMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 130, -1));
+        jPanel1.add(btnLayLaiMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 130, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 3, 48)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 153, 0));
         jLabel10.setText("Quên Mật Khẩu");
         jLabel10.setToolTipText("");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 540, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 380, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/minimize.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,7 +83,7 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 20, -1, -1));
 
         lbExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/exit.png"))); // NOI18N
         lbExit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -85,22 +91,20 @@ public class ForgotPassword_GUI extends javax.swing.JFrame {
                 lbExitMouseClicked(evt);
             }
         });
-        jPanel1.add(lbExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
+        jPanel1.add(lbExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 20, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/forgotpassbg.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 470));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/forgotpassword_GUI.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 330));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getAccessibleContext().setAccessibleParent(jLabel1);
