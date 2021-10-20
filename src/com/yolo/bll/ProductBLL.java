@@ -36,4 +36,10 @@ public class ProductBLL {
         }
     }
     
+    public boolean addProduct(ProductDTO product){
+        if (productDAO.addProduct(product)) {
+            return true;
+        }
+        return false;
+    }
 }

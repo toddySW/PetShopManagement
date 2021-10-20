@@ -21,14 +21,16 @@ public class CustomerDAO {
     public boolean login(String userName, String passWord){
         String sql = "select * from customer where username = '" + userName +"' and password = '"+ passWord +"'";
         try {
-            Statement st = db.Connection().createStatement();
+            Statement st = db.Connect().createStatement();
             ResultSet rs = st.executeQuery(sql);
+            
             if (rs.next()) {
                 return true;
             }   
+            db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         return false;
     }
     
@@ -38,12 +40,13 @@ public class CustomerDAO {
         str[0] = "";
         str[1] = "";
         try {
-            Statement st = db.Connection().createStatement();
+            Statement st = db.Connect().createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 str[0] = rs.getString("email");
                 str[1] = rs.getString("password");
             }   
+            db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,12 +58,13 @@ public class CustomerDAO {
         str[0] = "";
         str[1] = "";
         try {
-            Statement st = db.Connection().createStatement();
+            Statement st = db.Connect().createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 str[0] = rs.getString("email");
                 str[1] = rs.getString("password");
-            }   
+            }  
+            db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,17 +5,30 @@
  */
 package com.yolo.gui;
 
+import com.yolo.bll.NationBLL;
+import com.yolo.dto.NationDTO;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
-
+    NationBLL nationBLL = new NationBLL();
+    NationDTO nationDTO = new NationDTO();
+    DefaultTableModel model;
+    int row;
     /**
      * Creates new form QLNguonPham_GUI
      */
     public QLNguonPhamPanel_GUI() {
         initComponents();
+        model = (DefaultTableModel) tblNguonPham.getModel();
+        Object[] obj = {"NationID", "NationName", "Status"};
+        for (Object object : obj) {
+            model.addColumn(object);
+        }
+        nationBLL.showNationTable(model);
     }
 
     /**
@@ -109,15 +122,17 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
 
         tblNguonPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tblNguonPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNguonPhamMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblNguonPham);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -201,6 +216,23 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblNguonPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNguonPhamMouseClicked
+        // TODO add your handling code here:
+        formNull();
+        row =tblNguonPham.getSelectedRow();
+        txtMaQuocGia.setText(tableGet(0));      
+        txtTenQuocGia.setText(tableGet(1));;      
+        txtTrangThai.setText(tableGet(2));
+    }//GEN-LAST:event_tblNguonPhamMouseClicked
+
+    private String tableGet(int column){ 
+        return model.getValueAt(row, column).toString();
+    }
+    private void formNull(){
+        txtMaQuocGia.setText("");
+        txtTenQuocGia.setText("");
+        txtTrangThai.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;

@@ -5,6 +5,7 @@
  */
 package petmanagementapp;
 
+import com.yolo.gui.Home_GUI;
 import com.yolo.gui.Login_GUI;
 
 /**
@@ -18,7 +19,9 @@ public class PetManagementApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Login_GUI GUI = new Login_GUI();
+//        Login_GUI GUI = new Login_GUI();
+//        GUI.setVisible(true);
+        Home_GUI GUI = new Home_GUI();
         GUI.setVisible(true);
     }
     

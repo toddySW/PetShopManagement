@@ -100,6 +100,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton2);
         jToolBar1.add(jSeparator9);
 
@@ -108,6 +113,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton3);
         jToolBar1.add(jSeparator10);
 
@@ -116,6 +126,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton4);
         jToolBar1.add(jSeparator11);
 
@@ -124,6 +139,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton5);
         jToolBar1.add(jSeparator12);
 
@@ -132,6 +152,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton6);
         jToolBar1.add(jSeparator13);
 
@@ -140,6 +165,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton8.setFocusable(false);
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton8);
         jToolBar1.add(jSeparator14);
 
@@ -264,15 +294,15 @@ public class Home_GUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabpaneMainBroad, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
+            .addComponent(tabpaneMainBroad)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tabpaneMainBroad, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tabpaneMainBroad, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE))
         );
 
         pack();
@@ -357,6 +387,73 @@ public class Home_GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnItem_QLNhanVienActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (qlLoaiSanPhamPanel == null){ 
+            qlLoaiSanPhamPanel = new QLLoaiSanPhamPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/gpa-icon-24.png"));
+            tabpaneMainBroad.addTab("Quản lý loại sản phẩm", icon, qlLoaiSanPhamPanel, "Quản lý loại sản phẩm");
+        }
+        tabpaneMainBroad.setSelectedComponent(qlLoaiSanPhamPanel);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (qlSanPhamPanel == null){ 
+            qlSanPhamPanel = new QLSanPhamPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/gpa-icon-24.png"));
+            tabpaneMainBroad.addTab("Quản lý sản phẩm", icon, qlSanPhamPanel, "Quản lý sản phẩm");
+        }
+        tabpaneMainBroad.setSelectedComponent(qlSanPhamPanel);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if (qLNguonPhamPanel == null){ 
+            qLNguonPhamPanel = new QLNguonPhamPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/gpa-icon-24.png"));
+            tabpaneMainBroad.addTab("Quản lý nguồn gốc sản phẩm", icon, qLNguonPhamPanel, "Quản lý nguồn gốc sản phẩm");
+        }
+        tabpaneMainBroad.setSelectedComponent(qLNguonPhamPanel);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if (qLKhachHangPanel == null){ 
+            qLKhachHangPanel = new QLKhachHangPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"));
+            tabpaneMainBroad.addTab("Quản lý khách hàng", icon, qLKhachHangPanel, "Quản lý khách hàng");
+        }
+        tabpaneMainBroad.setSelectedComponent(qLKhachHangPanel);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        if (qLDonDatHangPanel== null){ 
+            qLDonDatHangPanel = new QLDonDatHangPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"));
+            tabpaneMainBroad.addTab("Quản lý đơn hàng", icon,  qLDonDatHangPanel, "Quản lý đơn hàng");
+        }
+        tabpaneMainBroad.setSelectedComponent( qLDonDatHangPanel);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+         if (qLNhanVienPanel == null){ 
+            qLNhanVienPanel = new QLNhanVienPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"));
+            tabpaneMainBroad.addTab("Quản lý nhân viên", icon, qLNhanVienPanel, "Quản lý nhân viên");
+        }
+        tabpaneMainBroad.setSelectedComponent(qLNhanVienPanel);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Home_GUI().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

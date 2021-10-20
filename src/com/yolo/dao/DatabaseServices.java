@@ -14,12 +14,23 @@ import java.sql.SQLException;
  */
 public class DatabaseServices {   
     
-    protected final String USERNAME = "ngochung_petshop";
-    protected final String PASSWORD = "ngochung_petshop";
-    protected final String DB_NAME = "ngochung_petshop";
-    protected final String URL = "jdbc:mysql://ngochung.ga:3306/" + DB_NAME;
-    public Connection Connection() throws ClassNotFoundException, SQLException{
+//    protected final String USERNAME = "ngochung_petshop";
+//    protected final String PASSWORD = "ngochung_petshop";
+//    protected final String DB_NAME = "ngochung_petshop";
+//    protected final String URL = "jdbc:mysql://ngochung.ga:3306/" + DB_NAME;
+    
+    protected final String USERNAME = "root";
+    protected final String PASSWORD = "";
+    protected final String DB_NAME = "petshop";
+    protected final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
+    
+    public Connection conn;
+    public Connection Connect() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection(URL, USERNAME, PASSWORD);       
-    }   
+        conn = DriverManager.getConnection(URL, USERNAME, PASSWORD); 
+        return conn;
+    }
+    public void closeConnect() throws SQLException{
+        conn.close();
+    }
 }

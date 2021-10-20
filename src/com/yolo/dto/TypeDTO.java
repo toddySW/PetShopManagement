@@ -9,15 +9,15 @@ package com.yolo.dto;
  *
  * @author NGOCHUNG
  */
-public class TypeProductDTO {
+public class TypeDTO {
     private String typeID;
     private String typeName;
     private int Status;
 
-    public TypeProductDTO() {
+    public TypeDTO() {
     }
 
-    public TypeProductDTO(String typeID, String typeName, int Status) {
+    public TypeDTO(String typeID, String typeName, int Status) {
         this.typeID = typeID;
         this.typeName = typeName;
         this.Status = Status;

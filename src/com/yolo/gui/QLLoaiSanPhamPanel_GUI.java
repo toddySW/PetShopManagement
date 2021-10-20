@@ -5,17 +5,30 @@
  */
 package com.yolo.gui;
 
+import com.yolo.bll.TypeBLL;
+import com.yolo.dto.TypeDTO;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
-
+    TypeBLL TypeBLL = new TypeBLL();
+    TypeDTO TypeDTO = new TypeDTO();
+    DefaultTableModel model;
+    int row;
     /**
      * Creates new form QLLoaiSanPhamPanel_GUI
      */
     public QLLoaiSanPhamPanel_GUI() {
         initComponents();
+        model = (DefaultTableModel) tblLoaiSP.getModel();
+        Object[] obj = {"TypeID", "TypeName", "Status"};
+        for (Object object : obj) {
+            model.addColumn(object);
+        }
+        TypeBLL.showTypeTable(model);
     }
 
     /**
@@ -106,17 +119,11 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
 
-        tblLoaiSP.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        tblLoaiSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLoaiSPMouseClicked(evt);
             }
-        ));
+        });
         jScrollPane1.setViewportView(tblLoaiSP);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -185,6 +192,24 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblLoaiSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiSPMouseClicked
+        // TODO add your handling code here:
+        formNull();
+        row =tblLoaiSP.getSelectedRow();
+        txtMaLoaiSP.setText(tableGet(0));
+        txtTenLoaiSP.setText(tableGet(1));
+        txtTrangThai.setText(tableGet(2));
+
+    }//GEN-LAST:event_tblLoaiSPMouseClicked
+
+    private String tableGet(int column){ 
+        return model.getValueAt(row, column).toString();
+    }
+    private void formNull(){
+        txtMaLoaiSP.setText("");
+        txtTenLoaiSP.setText("");
+        txtTrangThai.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;

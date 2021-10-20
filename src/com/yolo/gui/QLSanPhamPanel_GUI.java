@@ -6,7 +6,9 @@
 package com.yolo.gui;
 
 import com.yolo.bll.ProductBLL;
+import com.yolo.dto.ProductDTO;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -14,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     ProductBLL productBLL = new ProductBLL();
+    ProductDTO productDTO = new ProductDTO();
     DefaultTableModel model;
+    int row;
     /**
      * Creates new form QLSanPhamPanel_GUI
      */
@@ -86,6 +90,11 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
 
         btnTaoMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/new-icon-16.png"))); // NOI18N
         btnTaoMoi.setText("Tạo Mới");
+        btnTaoMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoMoiActionPerformed(evt);
+            }
+        });
 
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
@@ -197,6 +206,11 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
 
             }
         ));
+        tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblSanPham);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -223,7 +237,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(10, 10, 10)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,13 +246,52 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel5))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnTaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoMoiActionPerformed
+        // TODO add your handling code here:
+        productDTO.setProductName(txtTenSP.getText());
+        productDTO.setDescription(txtMoTaSP.getText());
+        productDTO.setNationID(txtTenQuocGia.getText());
+        productDTO.setTypeID(txtMaSP.getText());
+        productDTO.setPrice(Integer.parseInt(txtGiaSP.getText()));
+        productDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        productBLL.addProduct(productDTO);
+    }//GEN-LAST:event_btnTaoMoiActionPerformed
 
+    private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+        // TODO add your handling code here:
+        try {
+            formNull();
+            row =tblSanPham.getSelectedRow();
+            txtMaSP.setText(tableGet(0));
+            txtTenSP.setText(tableGet(1));
+            txTenLoaiSP.setText(tableGet(4));
+            txtTenQuocGia.setText(tableGet(5));;
+            txtGiaSP.setText(tableGet(6));
+            txtTrangThai.setText(tableGet(8));
+            txtMoTaSP.setText(tableGet(2));
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_tblSanPhamMouseClicked
+
+    private String tableGet(int column){ 
+        return model.getValueAt(row, column).toString();
+    }
+    private void formNull(){
+        txTenLoaiSP.setText("");
+        txtGiaSP.setText("");
+        txtMaSP.setText("");
+        txtMoTaSP.setText("");
+        txtTenQuocGia.setText("");
+        txtTenSP.setText("");
+        txtTrangThai.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnLuu;
