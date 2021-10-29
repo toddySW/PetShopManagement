@@ -7,6 +7,7 @@ package com.yolo.gui;
 
 import com.yolo.bll.ProductBLL;
 import com.yolo.dto.ProductDTO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -97,9 +98,19 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
 
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Button-Close-icon-16.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
@@ -256,10 +267,13 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         productDTO.setProductName(txtTenSP.getText());
         productDTO.setDescription(txtMoTaSP.getText());
         productDTO.setNationID(txtTenQuocGia.getText());
-        productDTO.setTypeID(txtMaSP.getText());
+        productDTO.setTypeID(txTenLoaiSP.getText());
         productDTO.setPrice(Integer.parseInt(txtGiaSP.getText()));
         productDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
-        productBLL.addProduct(productDTO);
+        if(productBLL.addProduct(productDTO)){
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }
     }//GEN-LAST:event_btnTaoMoiActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
@@ -279,6 +293,31 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(txtMaSP.getText());
+        System.out.println(id);
+        if (productBLL.deleteProduct(id)) {
+            resetTable();
+        }
+        
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        // TODO add your handling code here:
+        productDTO.setProductID(Integer.parseInt(txtMaSP.getText()));
+        productDTO.setProductName(txtTenSP.getText());
+        productDTO.setDescription(txtMoTaSP.getText());
+        productDTO.setNationID(txtTenQuocGia.getText());
+        productDTO.setTypeID(txTenLoaiSP.getText());
+        productDTO.setPrice(Integer.parseInt(txtGiaSP.getText()));
+        productDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        if(productBLL.updateProduct(productDTO)){
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
     private String tableGet(int column){ 
         return model.getValueAt(row, column).toString();
     }
@@ -290,6 +329,11 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         txtTenQuocGia.setText("");
         txtTenSP.setText("");
         txtTrangThai.setText("");
+    }
+    
+    private void resetTable(){
+        model.setRowCount(0);
+        productBLL.showProductTable(model);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;

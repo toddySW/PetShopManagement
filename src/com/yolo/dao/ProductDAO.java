@@ -50,7 +50,8 @@ public class ProductDAO {
     }
     
     public boolean addProduct(ProductDTO product) {
-        String sql = "INSERT INTO `product`(`ProductName`, `Description`, `DateOfManufacture`, `TypeID`, `nationID`, `Price`, `Images`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `product`(`ProductName`, `Description`, `DateOfManufacture`, `TypeID`, `nationID`, `Price`, `Images`, `Status`) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, product.getProductName());
@@ -64,38 +65,56 @@ public class ProductDAO {
             st.executeUpdate();
             st.close();
             db.closeConnect();
-            System.out.println("ok");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return true;
     }
     
     public boolean deleteProduct(int id) {
-        String sql = "DELETE FROM `product` WHERE ProductID =" + id;
+        String sql = "UPDATE product SET status = 1 WHERE productid =?";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+            st.close();
             db.closeConnect();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return true;
     }
     
     public boolean updateProduct(ProductDTO product) {
-        String sql = "";
+        String sql = "update `product` set "
+                + "`ProductName` = ?, "
+                + "`Description` = ?, "
+                + "`TypeID` = ?, "
+                + "`nationID` = ?, "
+                + "`Price` = ?, "
+                + "`Status` = ? "
+                + "where productid = ?";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setString(1, product.getProductName());
+            st.setString(2, product.getDescription());
+            st.setString(3, product.getTypeID());
+            st.setString(4, product.getNationID());
+            st.setInt(5, product.getPrice());
+            st.setInt(6, product.getStatus());
+            st.setInt(7, product.getProductID());
+            st.executeUpdate();
+            st.close();
             db.closeConnect();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return true;
     }
 }
