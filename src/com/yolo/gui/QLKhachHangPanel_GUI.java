@@ -5,17 +5,30 @@
  */
 package com.yolo.gui;
 
+import com.yolo.bll.CustomerBLL;
+import com.yolo.dto.CustomerDTO;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
-
+    CustomerBLL customerBLL = new CustomerBLL();
+    CustomerDTO customerDTO = new CustomerDTO();
+    DefaultTableModel model;
+    int row;
     /**
      * Creates new form QLKhachHangPanel_GUI
      */
     public QLKhachHangPanel_GUI() {
         initComponents();
+        model = (DefaultTableModel) tblKhachHang.getModel();
+        Object[] obj = {"CustomerID", "CustomerName", "TaxCode", "Phone", "Address", "Representative", "Email ", "UserName ", "PassWord", "Status", "Role"};
+        for (Object object : obj) {
+            model.addColumn(object);
+        }
+        customerBLL.showCustomerTable(model);
     }
 
     /**
@@ -159,17 +172,11 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhachHangMouseClicked(evt);
             }
-        ));
+        });
         jScrollPane2.setViewportView(tblKhachHang);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -196,14 +203,14 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap(174, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 524, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
+                .addGap(339, 339, 339)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(67, Short.MAX_VALUE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,6 +220,31 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
+        // TODO add your handling code here:
+        try {
+            formNull();
+            row =tblKhachHang.getSelectedRow();
+            txtMaKhachHang.setText(tableGet(0));
+            txtTenKhachHang.setText(tableGet(1));
+            txtPhone.setText(tableGet(3));
+            txtEmail.setText(tableGet(6));
+            txtTrangThai.setText(tableGet(9));
+            txtDiaChi.setText(tableGet(4));
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tblKhachHangMouseClicked
+    private String tableGet(int column){ 
+        return model.getValueAt(row, column).toString();
+    }
+    private void formNull(){
+        txtMaKhachHang.setText("");
+        txtTenKhachHang.setText("");
+        txtPhone.setText("");
+        txtTenKhachHang.setText("");;
+        txtTrangThai.setText("");
+        txtEmail.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;

@@ -8,7 +8,6 @@ package com.yolo.gui;
 import com.yolo.bll.ProductBLL;
 import com.yolo.dto.ProductDTO;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *

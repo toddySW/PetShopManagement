@@ -5,7 +5,7 @@
  */
 package com.yolo.gui;
 
-import com.yolo.bll.CustomerBLL;
+import com.yolo.bll.StaffBLL;
 import java.awt.Color;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
@@ -17,7 +17,7 @@ import javax.swing.JFrame;
  * @author NGOCHUNG
  */
 public class ForgotPassword_GUI extends javax.swing.JFrame {
-    CustomerBLL customerBLL = new CustomerBLL();
+    StaffBLL customerBLL = new StaffBLL();
     public JFrame Login_GUI;
     Color trans = new Color(0, 0, 0, 0);
 

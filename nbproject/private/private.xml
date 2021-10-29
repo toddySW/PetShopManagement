@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/bll/TypeBLL.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/QLLoaiSanPhamPanel_GUI.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dao/TypeDAO.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dao/NationDAO.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/bll/NationBLL.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dto/TypeDTO.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/QLNguonPhamPanel_GUI.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/QLNhanVienPanel_GUI.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dto/CustomerDTO.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/QLSanPhamPanel_GUI.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/bll/CustomerBLL.java</file>
         </group>
     </open-files>
 </project-private>

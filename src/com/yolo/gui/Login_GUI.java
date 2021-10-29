@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.yolo.gui;
-import com.yolo.bll.CustomerBLL;
+import com.yolo.bll.StaffBLL;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 /**
@@ -149,7 +149,7 @@ public class Login_GUI extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        CustomerBLL customerBLL = new CustomerBLL();
+        StaffBLL customerBLL = new StaffBLL();
         if(customerBLL.login(txtUserName.getText(), txtPassword.getText())){
             Home_GUI HOME = new Home_GUI();
             this.setVisible(false);
