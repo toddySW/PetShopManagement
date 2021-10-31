@@ -7,9 +7,7 @@ package com.yolo.bll;
 
 import com.yolo.dao.ProductDAO;
 import com.yolo.dto.ProductDTO;
-import com.yolo.gui.Home_GUI;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**

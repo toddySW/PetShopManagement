@@ -7,6 +7,7 @@ package com.yolo.gui;
 
 import com.yolo.bll.TypeBLL;
 import com.yolo.dto.TypeDTO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -109,12 +110,27 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
 
         btnTaoMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/new-icon-16.png"))); // NOI18N
         btnTaoMoi.setText("Tạo Mới");
+        btnTaoMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoMoiActionPerformed(evt);
+            }
+        });
 
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Button-Close-icon-16.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
@@ -202,6 +218,35 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblLoaiSPMouseClicked
 
+    private void btnTaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoMoiActionPerformed
+        // TODO add your handling code here:
+        TypeDTO.setTypeName(txtTenLoaiSP.getText());
+        TypeDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        if (TypeBLL.addType(TypeDTO)) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }
+    }//GEN-LAST:event_btnTaoMoiActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        // TODO add your handling code here:
+        TypeDTO.setTypeID(Integer.parseInt(txtMaLoaiSP.getText()));
+        TypeDTO.setTypeName(txtTenLoaiSP.getText());
+        TypeDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        if (TypeBLL.updateType(TypeDTO)) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        if (TypeBLL.deleteType(Integer.parseInt(txtMaLoaiSP.getText()))) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
     private String tableGet(int column){ 
         return model.getValueAt(row, column).toString();
     }
@@ -209,6 +254,11 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         txtMaLoaiSP.setText("");
         txtTenLoaiSP.setText("");
         txtTrangThai.setText("");
+    }
+    
+    private void resetTable(){
+        model.setRowCount(0);
+        TypeBLL.showTypeTable(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

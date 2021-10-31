@@ -65,10 +65,9 @@ public class ProductDAO {
             st.executeUpdate();
             st.close();
             db.closeConnect();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
         }
         return true;
     }
@@ -81,10 +80,9 @@ public class ProductDAO {
             st.executeUpdate();
             st.close();
             db.closeConnect();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
         }
         return true;
     }
@@ -110,10 +108,9 @@ public class ProductDAO {
             st.executeUpdate();
             st.close();
             db.closeConnect();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
         }
         return true;
     }

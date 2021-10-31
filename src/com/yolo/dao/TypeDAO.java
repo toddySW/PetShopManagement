@@ -6,6 +6,7 @@
 package com.yolo.dao;
 
 import com.yolo.dto.TypeDTO;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +29,7 @@ public class TypeDAO {
             ResultSet rs = st.executeQuery(sql);    
             while (rs.next()) {       
                 TypeDTO nation = new TypeDTO();
-                nation.setTypeID(rs.getString("TypeID"));
+                nation.setTypeID(rs.getInt("TypeID"));
                 nation.setTypeName(rs.getString("TypeName"));
                 nation.setStatus(rs.getInt("Status"));
                 arr.add(nation);  
@@ -39,5 +40,58 @@ public class TypeDAO {
             Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arr;
+    }
+    public boolean addType(TypeDTO type) {
+        String sql = "INSERT INTO `typeproduct`(`TypeName`, `Status`)"
+                + "VALUES (?, ?)";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setString(1, type.getTypeName());
+            st.setInt(2, type.getStatus());
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
+    public boolean deleteType(int id) {
+        String sql = "UPDATE typeproduct SET status = 1 WHERE typeid =?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
+    public boolean updateType(TypeDTO type) {
+        String sql = "UPDATE `typeproduct` SET "
+                + "`typeName` = ?, "
+                + "`Status` = ? "
+                + "WHERE `typeID` = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(2, type.getStatus());
+            st.setString(1, type.getTypeName());
+            st.setInt(3, type.getTypeID());
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
 }

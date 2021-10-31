@@ -29,4 +29,22 @@ public class TypeBLL {
             model.addRow(data);
         }
     }
+        public boolean addType(TypeDTO type){
+        if (typeDAO.addType(type)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean deleteType(int id){
+        if (typeDAO.deleteType(id)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean updateType(TypeDTO type){
+        if (typeDAO.updateType(type)) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -10,24 +10,24 @@ package com.yolo.dto;
  * @author NGOCHUNG
  */
 public class TypeDTO {
-    private String typeID;
+    private int typeID;
     private String typeName;
     private int Status;
 
     public TypeDTO() {
     }
 
-    public TypeDTO(String typeID, String typeName, int Status) {
+    public TypeDTO(int typeID, String typeName, int Status) {
         this.typeID = typeID;
         this.typeName = typeName;
         this.Status = Status;
     }
 
-    public String getTypeID() {
+    public int getTypeID() {
         return typeID;
     }
 
-    public void setTypeID(String typeID) {
+    public void setTypeID(int typeID) {
         this.typeID = typeID;
     }
 

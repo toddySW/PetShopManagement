@@ -296,7 +296,6 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(txtMaSP.getText());
-        System.out.println(id);
         if (productBLL.deleteProduct(id)) {
             resetTable();
         }
