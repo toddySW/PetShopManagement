@@ -21,7 +21,7 @@ public class DatabaseServices {
     
     protected final String USERNAME = "root";
     protected final String PASSWORD = "";
-    protected final String DB_NAME = "petshop";
+    protected final String DB_NAME = "ngochung_petshop";
     protected final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
     
     public Connection conn;

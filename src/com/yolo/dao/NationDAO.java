@@ -6,7 +6,6 @@
 package com.yolo.dao;
 
 import com.yolo.dto.NationDTO;
-import com.yolo.dto.NationDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

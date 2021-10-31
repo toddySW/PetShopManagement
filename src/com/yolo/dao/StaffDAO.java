@@ -5,7 +5,9 @@
  */
 package com.yolo.dao;
 
+import com.mysql.jdbc.PreparedStatement;
 import com.yolo.dto.StaffDTO;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -61,7 +63,7 @@ public class StaffDAO {
             }   
             db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StaffDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return false;
     }
@@ -80,7 +82,7 @@ public class StaffDAO {
             }   
             db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StaffDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return str;
     }
@@ -98,8 +100,84 @@ public class StaffDAO {
             }  
             db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StaffDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return str;
+    }
+    public boolean addStaff(StaffDTO staff) {
+        String sql = "INSERT INTO `staff`(`fullname`, `dateofbirth`, `gender`, `address`, `phone`, `image`, `Email`, `username`, `password`, `Status`, `Role`) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setString(1, staff.getStaffName());
+            st.setDate(2, (Date) staff.getDateOfBirth());
+            st.setBoolean(3, staff.isGender());
+            st.setString(4, staff.getAddress());
+            st.setString(5, staff.getPhone());
+            st.setString(6, staff.getImage());
+            st.setString(7, staff.getEmail());
+            st.setString(8, staff.getUserName());
+            st.setString(9, staff.getPassWord());
+            st.setInt(10, staff.getStatus());
+            st.setInt(11, staff.getRole());
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(StaffDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean deleteStaff(int id) {
+        String sql = "UPDATE staff SET status = 1 WHERE staffid = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(StaffDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean updateStaff(StaffDTO staff) {
+        String sql = "UPDATE `staff` SET "
+                + "`fullname`= ?, "
+////                + "`dateofbirth`=?,"
+                + "`gender`= ?, "
+//                + "`address`=?,"
+                + "`phone`= ?, "
+//                + "`image`=?,"
+                + "`Email`= ?, "
+                + "`username`= ?, "
+                + "`password`= ?, "
+                + "`Status`= ? "
+                + "WHERE `staffid` = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setString(1, staff.getStaffName());
+//            st.setDate(2, (Date) staff.getDateOfBirth());
+            st.setBoolean(2, staff.isGender());
+//            st.setString(4, staff.getAddress());
+            st.setString(3, staff.getPhone());
+//            st.setString(6, staff.getImage());
+            st.setString(4, staff.getEmail());
+            st.setString(5, staff.getUserName());
+            st.setString(6, staff.getPassWord());
+            st.setInt(7, staff.getStatus());
+            st.setInt(8, staff.getStaffID());
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(StaffDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
 }

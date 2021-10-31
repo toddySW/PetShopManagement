@@ -113,4 +113,14 @@ public class StaffBLL {
             Logger.getLogger(CustomerBLL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public boolean addStaff(StaffDTO staffDTO){
+        return staffDAO.addStaff(staffDTO);
+    }
+    public boolean updateStaff(StaffDTO staffDTO){
+        return staffDAO.updateStaff(staffDTO);
+    }
+    public boolean deleteStaff(int id){
+        return staffDAO.deleteStaff(id);
+    }
 }

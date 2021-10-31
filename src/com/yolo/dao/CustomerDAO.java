@@ -5,6 +5,8 @@
  */
 package com.yolo.dao;
 
+import com.mysql.jdbc.PreparedStatement;
+import com.yolo.dto.CustomerDTO;
 import com.yolo.dto.CustomerDTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,5 +49,40 @@ public class CustomerDAO {
             Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arr;
+    }
+    public boolean updateCustomer(CustomerDTO customer) {
+        String sql = "update `customer` set "
+                + "`CustomerName` = ?, "
+                + "`TaxCode` = ?, "
+                + "`Phone` = ?, "
+                + "`Address` = ?, "
+                + "`Representative` = ?, "
+                + "`Email` = ?, "
+                + "`UserName` = ?, "
+                + "`PassWord` = ?, "
+                + "`Status` = ?, "
+                + "`Role` = ? "
+                + "where customerid = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setString(1, customer.getCustomerName());
+            st.setString(2, customer.getTaxCode());
+            st.setString(3, customer.getPhone());
+            st.setString(4, customer.getAddress());
+            st.setString(5, customer.getRepresentative());
+            st.setString(6, customer.getEmail());
+            st.setString(7, customer.getUserName());
+            st.setString(8, customer.getPassWord());
+            st.setInt(9, customer.getStatus());
+            st.setInt(10, customer.getRole());
+            st.setInt(11, customer.getCustomerID());
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
 }
