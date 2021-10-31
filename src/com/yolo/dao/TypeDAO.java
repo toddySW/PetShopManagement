@@ -51,10 +51,9 @@ public class TypeDAO {
             st.executeUpdate();
             st.close();
             db.closeConnect();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }
@@ -67,10 +66,9 @@ public class TypeDAO {
             st.executeUpdate();
             st.close();
             db.closeConnect();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TypeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         return true;
     }

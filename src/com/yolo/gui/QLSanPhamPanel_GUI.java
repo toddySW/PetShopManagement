@@ -273,6 +273,8 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         if(productBLL.addProduct(productDTO)){
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
         }
     }//GEN-LAST:event_btnTaoMoiActionPerformed
 
@@ -298,6 +300,8 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         int id = Integer.parseInt(txtMaSP.getText());
         if (productBLL.deleteProduct(id)) {
             resetTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
         }
         
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -314,6 +318,8 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         if(productBLL.updateProduct(productDTO)){
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 

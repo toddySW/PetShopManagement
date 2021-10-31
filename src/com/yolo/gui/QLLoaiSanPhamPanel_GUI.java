@@ -225,6 +225,8 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         if (TypeBLL.addType(TypeDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
         }
     }//GEN-LAST:event_btnTaoMoiActionPerformed
 
@@ -236,6 +238,8 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         if (TypeBLL.updateType(TypeDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
@@ -244,6 +248,8 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         if (TypeBLL.deleteType(Integer.parseInt(txtMaLoaiSP.getText()))) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 

@@ -29,7 +29,7 @@ public class TypeBLL {
             model.addRow(data);
         }
     }
-        public boolean addType(TypeDTO type){
+    public boolean addType(TypeDTO type){
         if (typeDAO.addType(type)) {
             return true;
         }

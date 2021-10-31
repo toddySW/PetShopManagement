@@ -7,6 +7,7 @@ package com.yolo.gui;
 
 import com.yolo.bll.NationBLL;
 import com.yolo.dto.NationDTO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -110,12 +111,27 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
 
         btnTaoMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/new-icon-16.png"))); // NOI18N
         btnTaoMoi.setText("Tạo Mới");
+        btnTaoMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoMoiActionPerformed(evt);
+            }
+        });
 
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Button-Close-icon-16.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
@@ -225,6 +241,42 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
         txtTrangThai.setText(tableGet(2));
     }//GEN-LAST:event_tblNguonPhamMouseClicked
 
+    private void btnTaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoMoiActionPerformed
+        // TODO add your handling code here:
+        nationDTO.setNationID(txtMaQuocGia.getText());
+        nationDTO.setNationName(txtTenQuocGia.getText());
+        nationDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        if (nationBLL.addNation(nationDTO)) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }  else {
+            JOptionPane.showMessageDialog(this, "fail");
+        }
+    }//GEN-LAST:event_btnTaoMoiActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        // TODO add your handling code here:
+        nationDTO.setNationID(txtMaQuocGia.getText());
+        nationDTO.setNationName(txtTenQuocGia.getText());
+        nationDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        if (nationBLL.updateNation(nationDTO)) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }  else {
+            JOptionPane.showMessageDialog(this, "fail");
+        }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        if (nationBLL.deleteNation(txtMaQuocGia.getText())) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }  else {
+            JOptionPane.showMessageDialog(this, "fail");
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
     private String tableGet(int column){ 
         return model.getValueAt(row, column).toString();
     }
@@ -232,6 +284,11 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
         txtMaQuocGia.setText("");
         txtTenQuocGia.setText("");
         txtTrangThai.setText("");
+    }
+    
+    private void resetTable(){
+        model.setRowCount(0);
+        nationBLL.showNationTable(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

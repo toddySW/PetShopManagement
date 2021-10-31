@@ -67,7 +67,7 @@ public class ProductDAO {
             db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return true;
+            return false;
         }
         return true;
     }
@@ -82,7 +82,7 @@ public class ProductDAO {
             db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return true;
+            return false;
         }
         return true;
     }
@@ -110,7 +110,7 @@ public class ProductDAO {
             db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return true;
+            return false;
         }
         return true;
     }

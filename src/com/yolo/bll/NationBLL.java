@@ -7,6 +7,7 @@ package com.yolo.bll;
 
 import com.yolo.dao.NationDAO;
 import com.yolo.dto.NationDTO;
+import com.yolo.dto.NationDTO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,5 +29,23 @@ public class NationBLL {
             data[2] = nation.getStatus();
             model.addRow(data);
         }
+    }
+    public boolean addNation(NationDTO nation){
+        if (nationDAO.addNation(nation)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean deleteNation(String id){
+        if (nationDAO.deleteNation(id)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean updateNation(NationDTO nation){
+        if (nationDAO.updateNation(nation)) {
+            return true;
+        }
+        return false;
     }
 }
