@@ -7,7 +7,6 @@ package com.yolo.dao;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.yolo.dto.CustomerDTO;
-import com.yolo.dto.CustomerDTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,29 +52,29 @@ public class CustomerDAO {
     public boolean updateCustomer(CustomerDTO customer) {
         String sql = "update `customer` set "
                 + "`CustomerName` = ?, "
-                + "`TaxCode` = ?, "
+//                + "`TaxCode` = ?, "
                 + "`Phone` = ?, "
                 + "`Address` = ?, "
-                + "`Representative` = ?, "
+//                + "`Representative` = ?, "
                 + "`Email` = ?, "
-                + "`UserName` = ?, "
-                + "`PassWord` = ?, "
-                + "`Status` = ?, "
-                + "`Role` = ? "
+//                + "`UserName` = ?, "
+//                + "`PassWord` = ?, "
+                + "`Status` = ? "
+//                + "`Role` = ? "
                 + "where customerid = ?";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, customer.getCustomerName());
-            st.setString(2, customer.getTaxCode());
-            st.setString(3, customer.getPhone());
-            st.setString(4, customer.getAddress());
-            st.setString(5, customer.getRepresentative());
-            st.setString(6, customer.getEmail());
-            st.setString(7, customer.getUserName());
-            st.setString(8, customer.getPassWord());
-            st.setInt(9, customer.getStatus());
-            st.setInt(10, customer.getRole());
-            st.setInt(11, customer.getCustomerID());
+//            st.setString(2, customer.getTaxCode());
+            st.setString(2, customer.getPhone());
+            st.setString(3, customer.getAddress());
+//            st.setString(5, customer.getRepresentative());
+            st.setString(4, customer.getEmail());
+//            st.setString(7, customer.getUserName());
+//            st.setString(8, customer.getPassWord());
+            st.setInt(5, customer.getStatus());
+//            st.setInt(10, customer.getRole());
+            st.setInt(6, customer.getCustomerID());
             st.executeUpdate();
             st.close();
             db.closeConnect();
@@ -85,4 +84,19 @@ public class CustomerDAO {
         }
         return true;
     }
+    public boolean deleteCustomer(int id) {
+        String sql = "UPDATE customer SET status = 1 WHERE customerid = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
 }

@@ -7,6 +7,7 @@ package com.yolo.gui;
 
 import com.yolo.bll.CustomerBLL;
 import com.yolo.dto.CustomerDTO;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -88,9 +89,19 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
 
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Button-Close-icon-16.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
@@ -234,6 +245,32 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tblKhachHangMouseClicked
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        // TODO add your handling code here:
+        customerDTO.setCustomerID(Integer.parseInt(txtMaKhachHang.getText()));
+        customerDTO.setCustomerName(txtTenKhachHang.getText());
+        customerDTO.setPhone(txtPhone.getText());
+        customerDTO.setAddress(txtDiaChi.getText());
+        customerDTO.setEmail(txtEmail.getText()); 
+        customerDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        if (customerBLL.updateCustomer(customerDTO)) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
+        }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        if (customerBLL.deleteCustomer(Integer.parseInt(txtMaKhachHang.getText()))) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        } else {
+            JOptionPane.showMessageDialog(this, "fail");
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
     private String tableGet(int column){ 
         return model.getValueAt(row, column).toString();
     }
@@ -244,6 +281,10 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
         txtTenKhachHang.setText("");;
         txtTrangThai.setText("");
         txtEmail.setText("");
+    }
+    private void resetTable(){
+        model.setRowCount(0);
+        customerBLL.showCustomerTable(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
