@@ -34,7 +34,7 @@ public class ProductDAO {
                 product.setProductName(rs.getString("ProductName"));
                 product.setDescription(rs.getString("Description"));
                 product.setDateOfManufacture(rs.getDate("DateOfManufacture"));
-                product.setTypeID(rs.getString("TypeID"));
+                product.setTypeID(rs.getInt("TypeID"));
                 product.setNationID(rs.getString("NationID"));
                 product.setPrice(rs.getInt("Price"));
                 arr.add(product);  
@@ -55,7 +55,7 @@ public class ProductDAO {
             st.setString(1, product.getProductName());
             st.setString(2, product.getDescription());
             st.setDate(3, (Date) product.getDateOfManufacture());
-            st.setString(4, product.getTypeID());
+            st.setInt(4, product.getTypeID());
             st.setString(5, product.getNationID());
             st.setInt(6, product.getPrice());
             st.setInt(7, 0);
@@ -96,7 +96,7 @@ public class ProductDAO {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, product.getProductName());
             st.setString(2, product.getDescription());
-            st.setString(3, product.getTypeID());
+            st.setInt(3, product.getTypeID());
             st.setString(4, product.getNationID());
             st.setInt(5, product.getPrice());
             st.setInt(6, product.getProductID());

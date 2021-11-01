@@ -16,7 +16,7 @@ public class ProductDTO {
     private String ProductName;
     private String Description;
     private Date DateOfManufacture;
-    private String TypeID;
+    private int TypeID;
     private String nationID;
     private int Price;
     private String Images;
@@ -25,7 +25,7 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(int ProductID, String ProductName, String Description, Date DateOfManufacture, String TypeID, String nationID, int Price, String Images, int Status) {
+    public ProductDTO(int ProductID, String ProductName, String Description, Date DateOfManufacture, int TypeID, String nationID, int Price, String Images, int Status) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.Description = Description;
@@ -69,11 +69,11 @@ public class ProductDTO {
         this.DateOfManufacture = DateOfManufacture;
     }
 
-    public String getTypeID() {
+    public int getTypeID() {
         return TypeID;
     }
 
-    public void setTypeID(String TypeID) {
+    public void setTypeID(int TypeID) {
         this.TypeID = TypeID;
     }
 

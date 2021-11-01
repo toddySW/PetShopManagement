@@ -24,9 +24,9 @@ import javax.swing.table.DefaultTableModel;
 public class ProductBLL {
     ProductDAO productDAO = new ProductDAO();
     NationBLL nationBLL = new NationBLL();
-    ArrayList<NationDTO> listNation = nationBLL.getListNation();
+    public ArrayList<NationDTO> listNation = nationBLL.getListNation();
     TypeBLL typeBLL = new TypeBLL();
-    ArrayList<TypeDTO> listType = typeBLL.getListType();
+    public ArrayList<TypeDTO> listType = typeBLL.getListType();
     public ArrayList<ProductDTO> getListProduct(){
         return productDAO.getListProduct();
     }
@@ -58,7 +58,7 @@ public class ProductBLL {
             data[1] = product.getProductName();
             data[2] = product.getDescription();
             data[3] = product.getDateOfManufacture();
-            int tid = Integer.parseInt(product.getTypeID());
+            int tid = product.getTypeID();
             for (TypeDTO typeDTO : listType) {
                 int id = typeDTO.getTypeID();
                 if (tid == id) {

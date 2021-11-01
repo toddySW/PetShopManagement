@@ -6,6 +6,7 @@
 package com.yolo.gui;
 
 import com.yolo.bll.OrderBLL;
+import com.yolo.dto.CustomerDTO;
 import com.yolo.dto.OrderDTO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -52,7 +53,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         txtMaDon = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtTrangThai = new javax.swing.JTextField();
+        txtNgayDat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtTenKhachHang = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -61,7 +62,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
-        txtNgayDatHang = new javax.swing.JTextField();
+        txtTenNhanVien = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDonDatHang = new javax.swing.JTable();
@@ -74,9 +75,9 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
 
         jLabel2.setText("Mã đơn ");
 
-        jLabel6.setText("Mã khách hàng (lấy tên)");
+        jLabel6.setText("Tên khách hàng");
 
-        jLabel8.setText("Mã nhân viên (lấy tên)");
+        jLabel8.setText("Tên nhân viên");
 
         jLabel9.setText("Ngày đặt hàng");
 
@@ -115,9 +116,9 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtMaDon, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
-                    .addComponent(txtNgayDatHang)
+                    .addComponent(txtTenNhanVien)
                     .addComponent(txtTenKhachHang)
-                    .addComponent(txtTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+                    .addComponent(txtNgayDat, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
@@ -142,7 +143,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
                             .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNgayDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
                             .addComponent(btnLuu)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -157,7 +158,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
                         .addComponent(jLabel9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNgayDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(62, 62, 62)
                 .addComponent(jLabel7)
                 .addContainerGap(95, Short.MAX_VALUE))
@@ -242,9 +243,9 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
     }
     private void formNull(){
         txtMaDon.setText("");
-        txtNgayDatHang.setText("");
+        txtTenNhanVien.setText("");
         txtTenKhachHang.setText("");
-        txtTrangThai.setText("");
+        txtNgayDat.setText("");
     }
     
     private void resetTable(){
@@ -256,9 +257,9 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         formNull();
         row = tblDonDatHang.getSelectedRow();
         txtMaDon.setText(tableGet(0));
-        txtNgayDatHang.setText(tableGet(1));
+        txtTenNhanVien.setText(tableGet(3));
         txtTenKhachHang.setText(tableGet(2));
-        txtTrangThai.setText(tableGet(4));
+        txtNgayDat.setText(tableGet(1));
         orderBLL.showDetailOrder(model2, Integer.parseInt(tableGet(0)));
     }//GEN-LAST:event_tblDonDatHangMouseClicked
 
@@ -275,9 +276,12 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
         // TODO add your handling code here:
         orderDTO.setOrderID(Integer.parseInt(txtMaDon.getText()));
+        for (CustomerDTO customerDTO : orderBLL.listCustomer) {
+            
+        }
         orderDTO.setCustomerID(Integer.parseInt(txtTenKhachHang.getText()));
-        orderDTO.setOrderDate(txtNgayDatHang.getText());
-        orderDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        orderDTO.setOrderDate(txtTenNhanVien.getText());
+        orderDTO.setStatus(Integer.parseInt(txtNgayDat.getText()));
         if (orderBLL.updateOrder(orderDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
@@ -306,8 +310,8 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
     private javax.swing.JTable tblChiTietDonDatHang;
     private javax.swing.JTable tblDonDatHang;
     private javax.swing.JTextField txtMaDon;
-    private javax.swing.JTextField txtNgayDatHang;
+    private javax.swing.JTextField txtNgayDat;
     private javax.swing.JTextField txtTenKhachHang;
-    private javax.swing.JTextField txtTrangThai;
+    private javax.swing.JTextField txtTenNhanVien;
     // End of variables declaration//GEN-END:variables
 }

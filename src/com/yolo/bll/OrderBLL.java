@@ -27,9 +27,9 @@ public class OrderBLL {
     CustomerBLL customerBLL = new CustomerBLL();
     StaffBLL staffBLL = new StaffBLL();
     ProductBLL productBLL = new ProductBLL();
-    ArrayList<CustomerDTO> listCustomer = customerBLL.getListCustomer();
-    ArrayList<StaffDTO> listStaff = staffBLL.getListStaff();
-    ArrayList<ProductDTO> listProduct = productBLL.getListProduct();
+    public ArrayList<CustomerDTO> listCustomer = customerBLL.getListCustomer();
+    public ArrayList<StaffDTO> listStaff = staffBLL.getListStaff();
+    public ArrayList<ProductDTO> listProduct = productBLL.getListProduct();
     
     public void showOrderTable(DefaultTableModel model){
         model.setRowCount(0);

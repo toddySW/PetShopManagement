@@ -19,10 +19,10 @@ public class PetManagementApp {
      */
     public static void main(String[] args) {
 //         TODO code application logic here
-        Login_GUI GUI = new Login_GUI();
-        GUI.setVisible(true);
-//        Home_GUI GUI = new Home_GUI();
+//        Login_GUI GUI = new Login_GUI();
 //        GUI.setVisible(true);
+        Home_GUI GUI = new Home_GUI();
+        GUI.setVisible(true);
     }
     
 }

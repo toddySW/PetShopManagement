@@ -5,9 +5,10 @@
  */
 package com.yolo.gui;
 
-import com.yolo.bll.NationBLL;
 import com.yolo.bll.ProductBLL;
+import com.yolo.dto.NationDTO;
 import com.yolo.dto.ProductDTO;
+import com.yolo.dto.TypeDTO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +29,6 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     public QLSanPhamPanel_GUI() {
         initComponents();
         txtMaSP.setEditable(false);
-        txtTenSP.setEnabled(false);
         model = (DefaultTableModel) tblSanPham.getModel();
         Object[] obj = {"Mã sản phẩm", "Tên sản phẩm", "Mô tả", "Ngày nhập hàng", "Tên loại", "Tên nguòn", "Giá"};
         for (Object object : obj) {
@@ -262,8 +262,16 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         productDTO.setProductName(txtTenSP.getText());
         productDTO.setDescription(txtMoTaSP.getText());
-        productDTO.setNationID(txtTenQuocGia.getText());
-        productDTO.setTypeID(txTenLoaiSP.getText());
+        for (NationDTO nationDTO : productBLL.listNation) {
+            if (txtTenQuocGia.getText().equals(nationDTO.getNationName())) {
+                productDTO.setNationID(nationDTO.getNationID());
+            }
+        }
+        for (TypeDTO typeDTO : productBLL.listType) {
+            if (txTenLoaiSP.getText().equals(typeDTO.getTypeName())) {
+                productDTO.setTypeID(typeDTO.getTypeID());
+            }
+        }
         productDTO.setPrice(Integer.parseInt(txtGiaSP.getText()));
         
         if(productBLL.addProduct(productDTO)){
@@ -308,8 +316,16 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         productDTO.setProductID(Integer.parseInt(txtMaSP.getText()));
         productDTO.setProductName(txtTenSP.getText());
         productDTO.setDescription(txtMoTaSP.getText());
-        productDTO.setNationID(txtTenQuocGia.getText());
-        productDTO.setTypeID(txTenLoaiSP.getText());
+        for (NationDTO nationDTO : productBLL.listNation) {
+            if (txtTenQuocGia.getText().equals(nationDTO.getNationName())) {
+                productDTO.setNationID(nationDTO.getNationID());
+            }
+        }
+        for (TypeDTO typeDTO : productBLL.listType) {
+            if (txTenLoaiSP.getText().equals(typeDTO.getTypeName())) {
+                productDTO.setTypeID(typeDTO.getTypeID());
+            }
+        }
         productDTO.setPrice(Integer.parseInt(txtGiaSP.getText()));
         if(productBLL.updateProduct(productDTO)){
             resetTable();
