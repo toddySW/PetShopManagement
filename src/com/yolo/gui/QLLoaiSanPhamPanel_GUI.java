@@ -49,8 +49,6 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         txtMaLoaiSP = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtTrangThai = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         btnTaoMoi = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
@@ -63,11 +61,16 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
 
         jLabel1.setText("LOẠI SẢN PHẦM");
 
+        txtMaLoaiSP.setEditable(false);
+        txtMaLoaiSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaLoaiSPActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Mã loại sản phẩm");
 
         jLabel3.setText("Tên loại sản phẩm");
-
-        jLabel4.setText("Trạng thái");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,21 +78,14 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTenLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                            .addComponent(txtMaLoaiSP)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTrangThai)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTenLoaiSP, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                    .addComponent(txtMaLoaiSP))
+                .addContainerGap(450, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,11 +98,7 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtTenLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap())
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         btnTaoMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/new-icon-16.png"))); // NOI18N
@@ -267,6 +259,10 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         TypeBLL.exportFile(dPath);
     }//GEN-LAST:event_btnLuuActionPerformed
 
+    private void txtMaLoaiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaLoaiSPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaLoaiSPActionPerformed
+
     private String tableGet(int column){ 
         return model.getValueAt(row, column).toString();
     }
@@ -288,7 +284,6 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -298,6 +293,5 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
     private javax.swing.JTable tblLoaiSP;
     private javax.swing.JTextField txtMaLoaiSP;
     private javax.swing.JTextField txtTenLoaiSP;
-    private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
 }

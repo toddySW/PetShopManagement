@@ -18,7 +18,7 @@ public class Home_GUI extends javax.swing.JFrame {
     private QLKhachHangPanel_GUI qLKhachHangPanel;
     private QLDonDatHangPanel_GUI qLDonDatHangPanel;
     private QLThongKe_GUI qLThongKePanel;
-    private QLNhanVienPanel_GUI qLNhanVienPanel;
+    private IntroductionPanel_GUI gioithieuPanel;
     /**
      * Creates new form Management_GUI
      */
@@ -54,7 +54,6 @@ public class Home_GUI extends javax.swing.JFrame {
         jSeparator12 = new javax.swing.JToolBar.Separator();
         jButton6 = new javax.swing.JButton();
         jSeparator13 = new javax.swing.JToolBar.Separator();
-        jButton8 = new javax.swing.JButton();
         jSeparator14 = new javax.swing.JToolBar.Separator();
         jButton7 = new javax.swing.JButton();
         tabpaneMainBroad = new javax.swing.JTabbedPane();
@@ -70,8 +69,6 @@ public class Home_GUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnItem_qlNguonPham = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
-        mnItem_QLKhachHang = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         mnItem_QLDonHang = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         mnItem_QLNhanVien = new javax.swing.JMenuItem();
@@ -80,7 +77,7 @@ public class Home_GUI extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JToolBar.Separator();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        mnITemGioiThieu = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
 
@@ -160,18 +157,6 @@ public class Home_GUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton6);
         jToolBar1.add(jSeparator13);
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/gpa-icon-32.png"))); // NOI18N
-        jButton8.setText("Quản lý nhân viên");
-        jButton8.setFocusable(false);
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton8);
         jToolBar1.add(jSeparator14);
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-help-about-icon-32.png"))); // NOI18N
@@ -179,6 +164,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton7.setFocusable(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton7);
 
         jMenu1.setText("Hệ Thống ");
@@ -233,16 +223,6 @@ public class Home_GUI extends javax.swing.JFrame {
         jMenu2.add(mnItem_qlNguonPham);
         jMenu2.add(jSeparator5);
 
-        mnItem_QLKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"))); // NOI18N
-        mnItem_QLKhachHang.setText("Quản lý khách hàng ");
-        mnItem_QLKhachHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnItem_QLKhachHangActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mnItem_QLKhachHang);
-        jMenu2.add(jSeparator6);
-
         mnItem_QLDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"))); // NOI18N
         mnItem_QLDonHang.setText("Quản lý đơn đặt hàng ");
         mnItem_QLDonHang.addActionListener(new java.awt.event.ActionListener() {
@@ -282,10 +262,15 @@ public class Home_GUI extends javax.swing.JFrame {
         jMenu3.add(jMenuItem6);
         jMenu3.add(jSeparator4);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Help-icon-16.png"))); // NOI18N
-        jMenuItem7.setText("Giới thiệu");
-        jMenu3.add(jMenuItem7);
+        mnITemGioiThieu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnITemGioiThieu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Help-icon-16.png"))); // NOI18N
+        mnITemGioiThieu.setText("Giới thiệu");
+        mnITemGioiThieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnITemGioiThieuActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnITemGioiThieu);
 
         jMenuBar1.add(jMenu3);
 
@@ -295,7 +280,7 @@ public class Home_GUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE)
             .addComponent(tabpaneMainBroad)
         );
         layout.setVerticalGroup(
@@ -303,7 +288,7 @@ public class Home_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabpaneMainBroad, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE))
+                .addComponent(tabpaneMainBroad, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE))
         );
 
         pack();
@@ -346,16 +331,6 @@ public class Home_GUI extends javax.swing.JFrame {
         tabpaneMainBroad.setSelectedComponent(qLNguonPhamPanel);
     }//GEN-LAST:event_mnItem_qlNguonPhamActionPerformed
 
-    private void mnItem_QLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_QLKhachHangActionPerformed
-        // Hiện trang quản lý khách hàng lên trang Home
-        if (qLKhachHangPanel == null){ 
-            qLKhachHangPanel = new QLKhachHangPanel_GUI();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"));
-            tabpaneMainBroad.addTab("Quản lý khách hàng", icon, qLKhachHangPanel, "Quản lý khách hàng");
-        }
-        tabpaneMainBroad.setSelectedComponent(qLKhachHangPanel);
-    }//GEN-LAST:event_mnItem_QLKhachHangActionPerformed
-
     private void mnItem_QLDonHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_QLDonHangActionPerformed
         // Hiện trang quản lý đơn hàng lên trang Home
         if (qLDonDatHangPanel== null){ 
@@ -379,13 +354,6 @@ public class Home_GUI extends javax.swing.JFrame {
 
     private void mnItem_QLNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_QLNhanVienActionPerformed
         //Hiện trang Thống kê lên trang Home
-        if (qLNhanVienPanel == null){ 
-            qLNhanVienPanel = new QLNhanVienPanel_GUI();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"));
-            tabpaneMainBroad.addTab("Quản lý nhân viên", icon, qLNhanVienPanel, "Quản lý nhân viên");
-        }
-        tabpaneMainBroad.setSelectedComponent(qLNhanVienPanel);
-        
     }//GEN-LAST:event_mnItem_QLNhanVienActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -438,15 +406,25 @@ public class Home_GUI extends javax.swing.JFrame {
         tabpaneMainBroad.setSelectedComponent( qLDonDatHangPanel);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void mnITemGioiThieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnITemGioiThieuActionPerformed
         // TODO add your handling code here:
-         if (qLNhanVienPanel == null){ 
-            qLNhanVienPanel = new QLNhanVienPanel_GUI();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"));
-            tabpaneMainBroad.addTab("Quản lý nhân viên", icon, qLNhanVienPanel, "Quản lý nhân viên");
+        if (gioithieuPanel == null){ 
+            gioithieuPanel = new IntroductionPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"));
+            tabpaneMainBroad.addTab("Giới thiệu", icon, gioithieuPanel, "Giới thiệu");
         }
-        tabpaneMainBroad.setSelectedComponent(qLNhanVienPanel);
-    }//GEN-LAST:event_jButton8ActionPerformed
+        tabpaneMainBroad.setSelectedComponent( qLDonDatHangPanel);
+    }//GEN-LAST:event_mnITemGioiThieuActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        if (gioithieuPanel == null){ 
+            gioithieuPanel = new IntroductionPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"));
+            tabpaneMainBroad.addTab("Giới thiệu", icon, gioithieuPanel, "Giới thiệu");
+        }
+        tabpaneMainBroad.setSelectedComponent(gioithieuPanel);
+    }//GEN-LAST:event_jButton7ActionPerformed
     
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -464,7 +442,6 @@ public class Home_GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -472,7 +449,6 @@ public class Home_GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
@@ -484,13 +460,12 @@ public class Home_GUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenuItem mnITemGioiThieu;
     private javax.swing.JMenuItem mnItem_QLDonHang;
-    private javax.swing.JMenuItem mnItem_QLKhachHang;
     private javax.swing.JMenuItem mnItem_QLNhanVien;
     private javax.swing.JMenuItem mnItem_QLThongKe;
     private javax.swing.JMenuItem mnItem_qlLoaiSanPham;
