@@ -7,8 +7,14 @@ package com.yolo.bll;
 
 import com.yolo.dao.NationDAO;
 import com.yolo.dto.NationDTO;
-import com.yolo.dto.NationDTO;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +25,20 @@ public class NationBLL {
     NationDAO nationDAO = new NationDAO();
     public ArrayList<NationDTO> getListNation(){
         return nationDAO.getListNation();
+    }
+    public void exportFile(String path){
+        try {
+            File f = new File(path + "/Nation.csv");
+            FileWriter w = new FileWriter(f);
+            w.write("ID; Name; Status \n");
+            for (NationDTO nationDTO : getListNation()) {
+                w.write(nationDTO.getNationID()+";\t"+nationDTO.getNationName()+";\t"+nationDTO.getStatus()+"\n");
+            } 
+            w.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(NationBLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void showNationTable(DefaultTableModel model){
         model.setRowCount(0);

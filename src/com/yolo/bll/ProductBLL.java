@@ -7,7 +7,12 @@ package com.yolo.bll;
 
 import com.yolo.dao.ProductDAO;
 import com.yolo.dto.ProductDTO;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +23,28 @@ public class ProductBLL {
     ProductDAO productDAO = new ProductDAO();
     public ArrayList<ProductDTO> getListProduct(){
         return productDAO.getListProduct();
+    }
+    public void exportFile(String path){
+        try {
+            File f = new File(path + "/Product.csv");
+            FileWriter w = new FileWriter(f);
+            w.write("ID; Name; Description; DateOfManufacture; TypeID; NationID; Price; Images; Status; \n");
+            for (ProductDTO productDTO : getListProduct()) {
+                w.write(productDTO.getProductID()+";\t"
+                        +productDTO.getProductName()+";\t"
+                        +productDTO.getDescription()+";\t"
+                        +productDTO.getDateOfManufacture()+";\t"
+                        +productDTO.getTypeID()+";\t"
+                        +productDTO.getNationID()+";\t"
+                        +productDTO.getPrice()+";\t"
+                        +productDTO.getImages()+";\t"
+                        +productDTO.getStatus()+";\n");
+            } 
+            w.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ProductBLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void showProductTable(DefaultTableModel model){
         model.setRowCount(0);
