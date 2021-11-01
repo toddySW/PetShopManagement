@@ -7,7 +7,12 @@ package com.yolo.bll;
 
 import com.yolo.dao.TypeDAO;
 import com.yolo.dto.TypeDTO;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +23,21 @@ public class TypeBLL {
     TypeDAO typeDAO = new TypeDAO();
     public ArrayList<TypeDTO> getListType(){
         return typeDAO.getListType();
+    }
+    public void exportFile(String path){
+        try {
+            File f = new File(path + "/Type.csv");
+            FileWriter w = new FileWriter(f);
+            w.write("TypeID; TypeName; Status \n");
+            for (TypeDTO typeDTO : getListType()) {
+                w.write(typeDTO.getTypeID()+";\t"
+                        +typeDTO.getTypeName()+";\t"
+                        +typeDTO.getStatus()+";\n");
+            } 
+            w.close();  
+        } catch (IOException ex) {
+            Logger.getLogger(TypeBLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void showTypeTable(DefaultTableModel model){
         model.setRowCount(0);

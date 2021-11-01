@@ -40,8 +40,7 @@ public class ProductBLL {
                         +productDTO.getImages()+";\t"
                         +productDTO.getStatus()+";\n");
             } 
-            w.close();
-            
+            w.close();  
         } catch (IOException ex) {
             Logger.getLogger(ProductBLL.class.getName()).log(Level.SEVERE, null, ex);
         }

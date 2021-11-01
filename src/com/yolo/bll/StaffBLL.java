@@ -8,6 +8,9 @@ package com.yolo.bll;
 import com.yolo.dao.StaffDAO;
 import com.yolo.dto.StaffDTO;
 import com.yolo.gui.Login_GUI;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -32,6 +35,29 @@ public class StaffBLL {
     StaffDAO staffDAO = new StaffDAO();
     public ArrayList<StaffDTO> getListStaff(){
         return staffDAO.getListStaff();
+    }
+    public void exportFile(String path){
+        try {
+            File f = new File(path + "/Staff.csv");
+            FileWriter w = new FileWriter(f);
+            w.write("StaffID; StaffName; DateOfBirth; Gender; Address; Phone; Image; Email; UserName; Status; Role \n");
+            for (StaffDTO staffDTO : getListStaff()) {
+                w.write(staffDTO.getStaffID()+";\t"
+                        +staffDTO.getStaffName()+";\t"
+                        +staffDTO.getDateOfBirth()+";\t"
+                        +staffDTO.isGender()+";\t"
+                        +staffDTO.getAddress()+";\t"
+                        +staffDTO.getPhone()+";\t"
+                        +staffDTO.getImage()+";\t"
+                        +staffDTO.getEmail()+";\t"
+                        +staffDTO.getUserName()+";\t"
+                        +staffDTO.getStatus()+";\t"
+                        +staffDTO.getRole()+";\n");
+            } 
+            w.close();  
+        } catch (IOException ex) {
+            Logger.getLogger(StaffBLL.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void showStaffTable(DefaultTableModel model){
         model.setRowCount(0);
@@ -110,7 +136,7 @@ public class StaffBLL {
             
             JOptionPane.showMessageDialog(new Login_GUI(), "Password đã gửi về Email");
         } catch (MessagingException ex) {
-            Logger.getLogger(CustomerBLL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StaffBLL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -7,6 +7,7 @@ package com.yolo.gui;
 
 import com.yolo.bll.StaffBLL;
 import com.yolo.dto.StaffDTO;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -110,6 +111,11 @@ public class QLNhanVienPanel_GUI extends javax.swing.JPanel {
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rdbNam);
         rdbNam.setText("Nam");
@@ -352,6 +358,18 @@ public class QLNhanVienPanel_GUI extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "fail");
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        // TODO add your handling code here:
+        JFileChooser f = new JFileChooser();
+        f.setVisible(true);
+        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        String dPath = "";
+        if (f.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            dPath = f.getSelectedFile().getAbsolutePath();
+        }
+        staffBLL.exportFile(dPath);
+    }//GEN-LAST:event_btnLuuActionPerformed
     private String tableGet(int column){ 
         return model.getValueAt(row, column).toString();
     }
