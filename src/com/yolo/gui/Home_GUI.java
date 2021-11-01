@@ -90,6 +90,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton1);
         jToolBar1.add(jSeparator8);
 
@@ -425,6 +430,12 @@ public class Home_GUI extends javax.swing.JFrame {
         }
         tabpaneMainBroad.setSelectedComponent(gioithieuPanel);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new Login_GUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
