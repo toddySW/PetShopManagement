@@ -4,10 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/gui/QLDonDatHangPanel_GUI.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dto/OrderDTO.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dto/OrderDetailDTO.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dao/ProductDAO.java</file>
             <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/bll/OrderBLL.java</file>
-            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/dao/OrderDAO.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/bll/ProductBLL.java</file>
+            <file>file:/C:/Users/ngoch/Desktop/PetShopManagement/src/com/yolo/bll/NationBLL.java</file>
         </group>
     </open-files>
 </project-private>

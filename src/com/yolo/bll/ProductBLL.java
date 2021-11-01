@@ -6,7 +6,9 @@
 package com.yolo.bll;
 
 import com.yolo.dao.ProductDAO;
+import com.yolo.dto.NationDTO;
 import com.yolo.dto.ProductDTO;
+import com.yolo.dto.TypeDTO;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,6 +23,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProductBLL {
     ProductDAO productDAO = new ProductDAO();
+    NationBLL nationBLL = new NationBLL();
+    ArrayList<NationDTO> listNation = nationBLL.getListNation();
+    TypeBLL typeBLL = new TypeBLL();
+    ArrayList<TypeDTO> listType = typeBLL.getListType();
     public ArrayList<ProductDTO> getListProduct(){
         return productDAO.getListProduct();
     }
@@ -52,29 +58,37 @@ public class ProductBLL {
             data[1] = product.getProductName();
             data[2] = product.getDescription();
             data[3] = product.getDateOfManufacture();
-            data[4] = product.getTypeID();
-            data[5] = product.getNationID();
+            int tid = Integer.parseInt(product.getTypeID());
+            for (TypeDTO typeDTO : listType) {
+                int id = typeDTO.getTypeID();
+                if (tid == id) {
+                    data[4] = typeDTO.getTypeName();
+                }
+                
+            }
+            
+            String nid = product.getNationID();
+            for (NationDTO nationDTO : listNation) {
+                String id = nationDTO.getNationID();
+                if (nid == null ? id == null : nid.equals(id)) {
+                    data[5] = nationDTO.getNationName();
+                }
+                
+            }
+            
             data[6] = product.getPrice();
             model.addRow(data);
         }
+        
     }
     
     public boolean addProduct(ProductDTO product){
-        if (productDAO.addProduct(product)) {
-            return true;
-        }
-        return false;
+        return productDAO.addProduct(product);
     }
     public boolean deleteProduct(int id){
-        if (productDAO.deleteProduct(id)) {
-            return true;
-        }
-        return false;
+        return productDAO.deleteProduct(id);
     }
     public boolean updateProduct(ProductDTO product){
-        if (productDAO.updateProduct(product)) {
-            return true;
-        }
-        return false;
+        return productDAO.updateProduct(product);
     }
 }

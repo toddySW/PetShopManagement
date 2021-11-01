@@ -5,6 +5,7 @@
  */
 package com.yolo.gui;
 
+import com.yolo.bll.NationBLL;
 import com.yolo.bll.ProductBLL;
 import com.yolo.dto.ProductDTO;
 import javax.swing.JFileChooser;
@@ -18,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     ProductBLL productBLL = new ProductBLL();
     ProductDTO productDTO = new ProductDTO();
+    
     DefaultTableModel model;
     int row;
     /**
@@ -25,6 +27,8 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
      */
     public QLSanPhamPanel_GUI() {
         initComponents();
+        txtMaSP.setEditable(false);
+        txtTenSP.setEnabled(false);
         model = (DefaultTableModel) tblSanPham.getModel();
         Object[] obj = {"ProductID", "ProductName", "Description", "DateOfManufacture", "TypeID", "nationID", "Price"};
         for (Object object : obj) {
@@ -292,6 +296,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         int id = Integer.parseInt(txtMaSP.getText());
         if (productBLL.deleteProduct(id)) {
             resetTable();
+            JOptionPane.showMessageDialog(this, "success");
         } else {
             JOptionPane.showMessageDialog(this, "fail");
         }
