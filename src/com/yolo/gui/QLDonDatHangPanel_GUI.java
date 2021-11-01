@@ -26,7 +26,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         initComponents();
         model = (DefaultTableModel) tblDonDatHang.getModel();
         model2 = (DefaultTableModel) tblChiTietDonDatHang.getModel();
-        Object[] obj = {"OrderID", "OrderDate", "CustomerID", "StaffID", "Status"};
+        Object[] obj = {"Mã đơn hàng", "Ngày đặt hàng", "CustomerID", "StaffID", "Status"};
         for (Object object : obj) {
             model.addColumn(object);
         }

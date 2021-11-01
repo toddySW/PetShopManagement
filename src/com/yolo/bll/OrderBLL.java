@@ -6,8 +6,11 @@
 package com.yolo.bll;
 
 import com.yolo.dao.OrderDAO;
+import com.yolo.dto.CustomerDTO;
 import com.yolo.dto.OrderDTO;
 import com.yolo.dto.OrderDetailDTO;
+import com.yolo.dto.ProductDTO;
+import com.yolo.dto.StaffDTO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,14 +24,33 @@ public class OrderBLL {
         return orderDAO.getListOrder();
     }
     
+    CustomerBLL customerBLL = new CustomerBLL();
+    StaffBLL staffBLL = new StaffBLL();
+    ProductBLL productBLL = new ProductBLL();
+    ArrayList<CustomerDTO> listCustomer = customerBLL.getListCustomer();
+    ArrayList<StaffDTO> listStaff = staffBLL.getListStaff();
+    ArrayList<ProductDTO> listProduct = productBLL.getListProduct();
+    
     public void showOrderTable(DefaultTableModel model){
         model.setRowCount(0);
         Object data[] = new Object[6];
         for (OrderDTO order : getListOrder()) {
             data[0] = order.getOrderID();
-            data[1] = order.getOrderDate();  
-            data[2] = order.getCustomerID();
-            data[3] = order.getStaffID();
+            data[1] = order.getOrderDate();
+            int cid = order.getCustomerID();
+            for (CustomerDTO customerDTO : listCustomer) {
+                int id = customerDTO.getCustomerID();
+                if (cid == id) {
+                    data[2] = customerDTO.getCustomerName();
+                }
+            }
+            int sid = order.getStaffID();
+            for (StaffDTO customerDTO : listStaff) {
+                int id = customerDTO.getStaffID();
+                if (sid == id) {
+                    data[3] = customerDTO.getStaffName();
+                }
+            }
             data[4] = order.getStatus();
             model.addRow(data);
         }
@@ -53,10 +75,17 @@ public class OrderBLL {
         Object data[] = new Object[4];
         for (OrderDetailDTO orderD : getListOrderDetail(id)) {
             data[0] = orderD.getOrderID();
-            data[1] = orderD.getProductID();
+            int pid = orderD.getProductID();
+            for (ProductDTO productDTO : listProduct) {
+                int xid = productDTO.getProductID();
+                if (pid == xid) {
+                    data[1] = productDTO.getProductName();
+                }
+            }
             data[2] = orderD.getQuanlity();
             data[3] = orderD.getStatus();
             model.addRow(data);
         }
     }
 }
+
