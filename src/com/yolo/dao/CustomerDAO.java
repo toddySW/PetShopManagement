@@ -22,7 +22,7 @@ public class CustomerDAO {
     DatabaseServices db = new DatabaseServices();
     
     public ArrayList<CustomerDTO> getListCustomer(){
-        String sql = "SELECT * FROM customer";
+        String sql = "SELECT * FROM customer where status = 0";
         ArrayList<CustomerDTO> arr = new ArrayList<CustomerDTO>();        
         try {
             Statement st = db.Connect().createStatement();
@@ -32,14 +32,9 @@ public class CustomerDAO {
                 customer.setCustomerID(rs.getInt("CustomerID"));
                 customer.setCustomerName(rs.getString("CustomerName"));
                 customer.setUserName(rs.getString("UserName"));
-                customer.setTaxCode(rs.getString("TaxCode"));
                 customer.setPhone(rs.getString("Phone"));
                 customer.setAddress(rs.getString("Address"));
-                customer.setRepresentative(rs.getString("Representative"));
                 customer.setEmail(rs.getString("Email"));
-                customer.setPassWord(rs.getString("PassWord"));
-                customer.setStatus(rs.getInt("Status"));
-                customer.setRole(rs.getInt("Role"));
                 arr.add(customer);  
             }
             st.close();
@@ -52,29 +47,17 @@ public class CustomerDAO {
     public boolean updateCustomer(CustomerDTO customer) {
         String sql = "update `customer` set "
                 + "`CustomerName` = ?, "
-//                + "`TaxCode` = ?, "
                 + "`Phone` = ?, "
                 + "`Address` = ?, "
-//                + "`Representative` = ?, "
-                + "`Email` = ?, "
-//                + "`UserName` = ?, "
-//                + "`PassWord` = ?, "
-                + "`Status` = ? "
-//                + "`Role` = ? "
+                + "`Email` = ? "
                 + "where customerid = ?";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, customer.getCustomerName());
-//            st.setString(2, customer.getTaxCode());
             st.setString(2, customer.getPhone());
             st.setString(3, customer.getAddress());
-//            st.setString(5, customer.getRepresentative());
             st.setString(4, customer.getEmail());
-//            st.setString(7, customer.getUserName());
-//            st.setString(8, customer.getPassWord());
-            st.setInt(5, customer.getStatus());
-//            st.setInt(10, customer.getRole());
-            st.setInt(6, customer.getCustomerID());
+            st.setInt(5, customer.getCustomerID());
             st.executeUpdate();
             st.close();
             db.closeConnect();

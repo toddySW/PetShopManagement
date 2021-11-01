@@ -26,7 +26,7 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
     public QLLoaiSanPhamPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblLoaiSP.getModel();
-        Object[] obj = {"TypeID", "TypeName", "Status"};
+        Object[] obj = {"TypeID", "TypeName"};
         for (Object object : obj) {
             model.addColumn(object);
         }
@@ -220,14 +220,11 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         row =tblLoaiSP.getSelectedRow();
         txtMaLoaiSP.setText(tableGet(0));
         txtTenLoaiSP.setText(tableGet(1));
-        txtTrangThai.setText(tableGet(2));
-
     }//GEN-LAST:event_tblLoaiSPMouseClicked
 
     private void btnTaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoMoiActionPerformed
         // TODO add your handling code here:
         TypeDTO.setTypeName(txtTenLoaiSP.getText());
-        TypeDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
         if (TypeBLL.addType(TypeDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
@@ -240,7 +237,6 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         TypeDTO.setTypeID(Integer.parseInt(txtMaLoaiSP.getText()));
         TypeDTO.setTypeName(txtTenLoaiSP.getText());
-        TypeDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
         if (TypeBLL.updateType(TypeDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
@@ -277,7 +273,6 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
     private void formNull(){
         txtMaLoaiSP.setText("");
         txtTenLoaiSP.setText("");
-        txtTrangThai.setText("");
     }
     
     private void resetTable(){

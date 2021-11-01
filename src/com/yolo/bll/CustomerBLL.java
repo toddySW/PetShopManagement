@@ -28,18 +28,14 @@ public class CustomerBLL {
         try {
             File f = new File(path + "/Customer.csv");
             FileWriter w = new FileWriter(f);
-            w.write("CustomerID; CustomerName; TaxCode; Phone; Address; Representative; Email; UserName; Status; Role \n");
+            w.write("CustomerID; CustomerName; Phone; Address; Email; UserName\n");
             for (CustomerDTO customerDTO : getListCustomer()) {
                 w.write(customerDTO.getCustomerID()+";\t"
                         +customerDTO.getCustomerName()+";\t"
-                        +customerDTO.getTaxCode()+";\t"
                         +customerDTO.getPhone()+";\t"
                         +customerDTO.getAddress()+";\t"
-                        +customerDTO.getRepresentative()+";\t"
                         +customerDTO.getEmail()+";\t"
-                        +customerDTO.getUserName()+";\t"
-                        +customerDTO.getStatus()+";\t"
-                        +customerDTO.getRole()+";\n");
+                        +customerDTO.getUserName()+";\n");
             } 
             w.close();  
         } catch (IOException ex) {
@@ -48,19 +44,14 @@ public class CustomerBLL {
     }
     public void showCustomerTable(DefaultTableModel model){
         model.setRowCount(0);
-        Object data[] = new Object[11];
+        Object data[] = new Object[6];
         for (CustomerDTO customer : getListCustomer()) {
             data[0] = customer.getCustomerID();
             data[1] = customer.getCustomerName();
-            data[2] = customer.getTaxCode();
-            data[3] = customer.getPhone();
-            data[4] = customer.getAddress();
-            data[5] = customer.getRepresentative();
-            data[6] = customer.getEmail();
-            data[7] = customer.getUserName();
-            data[8] = customer.getPassWord();
-            data[9] = customer.getStatus();
-            data[10] = customer.getRole();
+            data[2] = customer.getPhone();
+            data[3] = customer.getAddress();
+            data[4] = customer.getEmail();
+            data[5] = customer.getUserName();
             model.addRow(data);
         }
     }

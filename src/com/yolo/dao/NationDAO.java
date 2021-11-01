@@ -22,7 +22,7 @@ public class NationDAO {
     DatabaseServices db = new DatabaseServices();
     
     public ArrayList<NationDTO> getListNation(){
-        String sql = "SELECT * FROM nation";
+        String sql = "SELECT * FROM nation where status = 0";
         ArrayList<NationDTO> arr = new ArrayList<NationDTO>();        
         try {
             Statement st = db.Connect().createStatement();
@@ -31,7 +31,6 @@ public class NationDAO {
                 NationDTO nation = new NationDTO();
                 nation.setNationID(rs.getString("NationID"));
                 nation.setNationName(rs.getString("NationName"));
-                nation.setStatus(rs.getInt("Status"));
                 arr.add(nation);  
             }
             st.close();
@@ -43,12 +42,12 @@ public class NationDAO {
     }
     public boolean addNation(NationDTO nation) {
         String sql = "INSERT INTO `nation`(`NationID`, `NationName`, `Status`)"
-                + "VALUES (?, ?, ?)";
+                + "VALUES (?, ?, 0)";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, nation.getNationID());
             st.setString(2, nation.getNationName());
-            st.setInt(3, nation.getStatus());
+//            st.setInt(3, nation.getStatus());
             st.executeUpdate();
             st.close();
             db.closeConnect();
@@ -76,14 +75,12 @@ public class NationDAO {
     
     public boolean updateNation(NationDTO nation) {
         String sql = "UPDATE `nation` SET "
-                + "`nationName` = ?, "
-                + "`Status` = ? "
+                + "`nationName` = ? "
                 + "WHERE `nationID` = ?";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
-            st.setInt(2, nation.getStatus());
             st.setString(1, nation.getNationName());
-            st.setString(3, nation.getNationID());
+            st.setString(2, nation.getNationID());
             st.executeUpdate();
             st.close();
             db.closeConnect();

@@ -28,9 +28,9 @@ public class NationBLL {
         try {
             File f = new File(path + "/Nation.csv");
             FileWriter w = new FileWriter(f);
-            w.write("ID; Name; Status \n");
+            w.write("ID; Name \n");
             for (NationDTO nationDTO : getListNation()) {
-                w.write(nationDTO.getNationID()+";\t"+nationDTO.getNationName()+";\t"+nationDTO.getStatus()+"\n");
+                w.write(nationDTO.getNationID()+";\t"+nationDTO.getNationName()+"\n");
             } 
             w.close();
             
@@ -40,11 +40,10 @@ public class NationBLL {
     }
     public void showNationTable(DefaultTableModel model){
         model.setRowCount(0);
-        Object data[] = new Object[3];
+        Object data[] = new Object[2];
         for (NationDTO nation : getListNation()) {
             data[0] = nation.getNationID();
             data[1] = nation.getNationName();           
-            data[2] = nation.getStatus();
             model.addRow(data);
         }
     }

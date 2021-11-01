@@ -28,11 +28,10 @@ public class TypeBLL {
         try {
             File f = new File(path + "/Type.csv");
             FileWriter w = new FileWriter(f);
-            w.write("TypeID; TypeName; Status \n");
+            w.write("TypeID; TypeName\n");
             for (TypeDTO typeDTO : getListType()) {
                 w.write(typeDTO.getTypeID()+";\t"
-                        +typeDTO.getTypeName()+";\t"
-                        +typeDTO.getStatus()+";\n");
+                        +typeDTO.getTypeName()+";\n");
             } 
             w.close();  
         } catch (IOException ex) {
@@ -41,11 +40,10 @@ public class TypeBLL {
     }
     public void showTypeTable(DefaultTableModel model){
         model.setRowCount(0);
-        Object data[] = new Object[3];
+        Object data[] = new Object[2];
         for (TypeDTO type : getListType()) {
             data[0] = type.getTypeID();
             data[1] = type.getTypeName();           
-            data[2] = type.getStatus();
             model.addRow(data);
         }
     }

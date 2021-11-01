@@ -30,7 +30,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         for (Object object : obj) {
             model.addColumn(object);
         }
-        Object[] objD = {"OrderID", "ProductID", "Quanlity", "Status"};
+        Object[] objD = {"OrderID", "ProductID", "Quanlity"};
         for (Object object : objD) {
            model2.addColumn(object);
         }

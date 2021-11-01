@@ -27,7 +27,8 @@ public class Home_GUI extends javax.swing.JFrame {
         // set logo app
         setIconImage(new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/logo.png")).getImage());
         //canh giữa màn hình khi run form
-        setLocationRelativeTo(null);              
+        setLocationRelativeTo(null); 
+        
     }
 
     /**
@@ -314,6 +315,7 @@ public class Home_GUI extends javax.swing.JFrame {
             qlSanPhamPanel = new QLSanPhamPanel_GUI();
             ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/gpa-icon-24.png"));
             tabpaneMainBroad.addTab("Quản lý sản phẩm", icon, qlSanPhamPanel, "Quản lý sản phẩm");
+            
         }
         tabpaneMainBroad.setSelectedComponent(qlSanPhamPanel);
     }//GEN-LAST:event_mnItem_qlSanPhamActionPerformed
@@ -331,7 +333,6 @@ public class Home_GUI extends javax.swing.JFrame {
             tabpaneMainBroad.addTab("Quản lý loại sản phẩm", icon, qlLoaiSanPhamPanel, "Quản lý loại sản phẩm");
         }
         tabpaneMainBroad.setSelectedComponent(qlLoaiSanPhamPanel);
-        
         
     }//GEN-LAST:event_mnItem_qlLoaiSanPhamActionPerformed
 
@@ -446,7 +447,7 @@ public class Home_GUI extends javax.swing.JFrame {
         }
         tabpaneMainBroad.setSelectedComponent(qLNhanVienPanel);
     }//GEN-LAST:event_jButton8ActionPerformed
-
+    
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

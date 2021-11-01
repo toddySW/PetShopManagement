@@ -23,7 +23,7 @@ public class ProductDAO {
     DatabaseServices db = new DatabaseServices();
     
     public ArrayList<ProductDTO> getListProduct(){
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT * FROM product where status = 0";
         ArrayList<ProductDTO> arr = new ArrayList<ProductDTO>();        
         try {
             Statement st = db.Connect().createStatement();
@@ -37,7 +37,6 @@ public class ProductDAO {
                 product.setTypeID(rs.getString("TypeID"));
                 product.setNationID(rs.getString("NationID"));
                 product.setPrice(rs.getInt("Price"));
-                product.setStatus(rs.getInt("Status"));
                 arr.add(product);  
             }
             st.close();
@@ -49,7 +48,7 @@ public class ProductDAO {
     }
     
     public boolean addProduct(ProductDTO product) {
-        String sql = "INSERT INTO `product`(`ProductName`, `Description`, `DateOfManufacture`, `TypeID`, `nationID`, `Price`, `Status`) "
+        String sql = "INSERT INTO `product`(`ProductName`, `Description`, `DateOfManufacture`, `TypeID`, `nationID`, `Price`, `status`) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
@@ -59,7 +58,7 @@ public class ProductDAO {
             st.setString(4, product.getTypeID());
             st.setString(5, product.getNationID());
             st.setInt(6, product.getPrice());
-            st.setInt(7, product.getStatus());
+            st.setInt(7, 0);
             st.executeUpdate();
             st.close();
             db.closeConnect();
@@ -91,8 +90,7 @@ public class ProductDAO {
                 + "`Description` = ?, "
                 + "`TypeID` = ?, "
                 + "`nationID` = ?, "
-                + "`Price` = ?, "
-                + "`Status` = ? "
+                + "`Price` = ? "
                 + "where productid = ?";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
@@ -101,8 +99,7 @@ public class ProductDAO {
             st.setString(3, product.getTypeID());
             st.setString(4, product.getNationID());
             st.setInt(5, product.getPrice());
-            st.setInt(6, product.getStatus());
-            st.setInt(7, product.getProductID());
+            st.setInt(6, product.getProductID());
             st.executeUpdate();
             st.close();
             db.closeConnect();

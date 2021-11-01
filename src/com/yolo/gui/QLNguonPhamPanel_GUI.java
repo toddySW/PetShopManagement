@@ -26,7 +26,7 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
     public QLNguonPhamPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblNguonPham.getModel();
-        Object[] obj = {"NationID", "NationName", "Status"};
+        Object[] obj = {"NationID", "NationName"};
         for (Object object : obj) {
             model.addColumn(object);
         }
@@ -251,7 +251,6 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         nationDTO.setNationID(txtMaQuocGia.getText());
         nationDTO.setNationName(txtTenQuocGia.getText());
-        nationDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
         if (nationBLL.addNation(nationDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
@@ -264,7 +263,6 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         nationDTO.setNationID(txtMaQuocGia.getText());
         nationDTO.setNationName(txtTenQuocGia.getText());
-        nationDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
         if (nationBLL.updateNation(nationDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");

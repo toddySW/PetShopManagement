@@ -22,7 +22,7 @@ public class TypeDAO {
     DatabaseServices db = new DatabaseServices();
     
     public ArrayList<TypeDTO> getListType(){
-        String sql = "SELECT * FROM typeproduct";
+        String sql = "SELECT * FROM typeproduct where status = 0";
         ArrayList<TypeDTO> arr = new ArrayList<TypeDTO>();        
         try {
             Statement st = db.Connect().createStatement();
@@ -31,7 +31,6 @@ public class TypeDAO {
                 TypeDTO nation = new TypeDTO();
                 nation.setTypeID(rs.getInt("TypeID"));
                 nation.setTypeName(rs.getString("TypeName"));
-                nation.setStatus(rs.getInt("Status"));
                 arr.add(nation);  
             }
             st.close();
@@ -42,12 +41,11 @@ public class TypeDAO {
         return arr;
     }
     public boolean addType(TypeDTO type) {
-        String sql = "INSERT INTO `typeproduct`(`TypeName`, `Status`)"
-                + "VALUES (?, ?)";
+        String sql = "INSERT INTO `typeproduct`(`TypeName`, `status`)"
+                + "VALUES (?, 0)";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, type.getTypeName());
-            st.setInt(2, type.getStatus());
             st.executeUpdate();
             st.close();
             db.closeConnect();
@@ -75,14 +73,12 @@ public class TypeDAO {
     
     public boolean updateType(TypeDTO type) {
         String sql = "UPDATE `typeproduct` SET "
-                + "`typeName` = ?, "
-                + "`Status` = ? "
+                + "`typeName` = ? "
                 + "WHERE `typeID` = ?";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
-            st.setInt(2, type.getStatus());
             st.setString(1, type.getTypeName());
-            st.setInt(3, type.getTypeID());
+            st.setInt(2, type.getTypeID());
             st.executeUpdate();
             st.close();
             db.closeConnect();

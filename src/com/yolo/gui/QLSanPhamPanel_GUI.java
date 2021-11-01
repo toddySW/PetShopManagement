@@ -26,7 +26,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     public QLSanPhamPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblSanPham.getModel();
-        Object[] obj = {"ProductID", "ProductName", "Description", "DateOfManufacture", "TypeID", "nationID", "Price", "Status"};
+        Object[] obj = {"ProductID", "ProductName", "Description", "DateOfManufacture", "TypeID", "nationID", "Price"};
         for (Object object : obj) {
             model.addColumn(object);
         }
@@ -275,7 +275,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         productDTO.setNationID(txtTenQuocGia.getText());
         productDTO.setTypeID(txTenLoaiSP.getText());
         productDTO.setPrice(Integer.parseInt(txtGiaSP.getText()));
-        productDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        
         if(productBLL.addProduct(productDTO)){
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
@@ -291,11 +291,11 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
             row =tblSanPham.getSelectedRow();
             txtMaSP.setText(tableGet(0));
             txtTenSP.setText(tableGet(1));
+            txtMoTaSP.setText(tableGet(2));
             txTenLoaiSP.setText(tableGet(4));
             txtTenQuocGia.setText(tableGet(5));;
             txtGiaSP.setText(tableGet(6));
-            txtTrangThai.setText(tableGet(7));
-            txtMoTaSP.setText(tableGet(2));
+            
         } catch (Exception e) {
         }
         
@@ -320,7 +320,6 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         productDTO.setNationID(txtTenQuocGia.getText());
         productDTO.setTypeID(txTenLoaiSP.getText());
         productDTO.setPrice(Integer.parseInt(txtGiaSP.getText()));
-        productDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
         if(productBLL.updateProduct(productDTO)){
             resetTable();
             JOptionPane.showMessageDialog(this, "success");

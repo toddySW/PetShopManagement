@@ -26,7 +26,7 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
     public QLKhachHangPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblKhachHang.getModel();
-        Object[] obj = {"CustomerID", "CustomerName", "TaxCode", "Phone", "Address", "Representative", "Email ", "UserName ", "PassWord", "Status", "Role"};
+        Object[] obj = {"CustomerID", "CustomerName", "Phone", "Address", "Email ", "UserName "};
         for (Object object : obj) {
             model.addColumn(object);
         }
@@ -244,10 +244,9 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
             row =tblKhachHang.getSelectedRow();
             txtMaKhachHang.setText(tableGet(0));
             txtTenKhachHang.setText(tableGet(1));
-            txtPhone.setText(tableGet(3));
-            txtEmail.setText(tableGet(6));
-            txtTrangThai.setText(tableGet(9));
-            txtDiaChi.setText(tableGet(4));
+            txtPhone.setText(tableGet(2));
+            txtEmail.setText(tableGet(4));
+            txtDiaChi.setText(tableGet(3));
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tblKhachHangMouseClicked
@@ -259,7 +258,6 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
         customerDTO.setPhone(txtPhone.getText());
         customerDTO.setAddress(txtDiaChi.getText());
         customerDTO.setEmail(txtEmail.getText()); 
-        customerDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
         if (customerBLL.updateCustomer(customerDTO)) {
             resetTable();
             JOptionPane.showMessageDialog(this, "success");
@@ -297,7 +295,6 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
         txtTenKhachHang.setText("");
         txtPhone.setText("");
         txtTenKhachHang.setText("");;
-        txtTrangThai.setText("");
         txtEmail.setText("");
     }
     private void resetTable(){
