@@ -26,7 +26,7 @@ public class QLKhachHangPanel_GUI extends javax.swing.JPanel {
     public QLKhachHangPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblKhachHang.getModel();
-        Object[] obj = {"CustomerID", "CustomerName", "Phone", "Address", "Email ", "UserName "};
+        Object[] obj = {"Mã khách hàng", "Tên khách hàng", "Điện thoại", "Địa chỉ", "Email ", "Tên tài khoản"};
         for (Object object : obj) {
             model.addColumn(object);
         }

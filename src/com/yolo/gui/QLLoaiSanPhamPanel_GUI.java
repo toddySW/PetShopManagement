@@ -26,7 +26,7 @@ public class QLLoaiSanPhamPanel_GUI extends javax.swing.JPanel {
     public QLLoaiSanPhamPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblLoaiSP.getModel();
-        Object[] obj = {"TypeID", "TypeName"};
+        Object[] obj = {"Mã loại", "Tên loại"};
         for (Object object : obj) {
             model.addColumn(object);
         }

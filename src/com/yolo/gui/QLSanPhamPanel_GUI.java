@@ -30,7 +30,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         txtMaSP.setEditable(false);
         txtTenSP.setEnabled(false);
         model = (DefaultTableModel) tblSanPham.getModel();
-        Object[] obj = {"ProductID", "ProductName", "Description", "DateOfManufacture", "TypeID", "nationID", "Price"};
+        Object[] obj = {"Mã sản phẩm", "Tên sản phẩm", "Mô tả", "Ngày nhập hàng", "Tên loại", "Tên nguòn", "Giá"};
         for (Object object : obj) {
             model.addColumn(object);
         }

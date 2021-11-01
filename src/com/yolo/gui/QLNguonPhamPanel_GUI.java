@@ -26,7 +26,7 @@ public class QLNguonPhamPanel_GUI extends javax.swing.JPanel {
     public QLNguonPhamPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblNguonPham.getModel();
-        Object[] obj = {"NationID", "NationName"};
+        Object[] obj = {"Mã nguồn", "Tên nguồn"};
         for (Object object : obj) {
             model.addColumn(object);
         }
