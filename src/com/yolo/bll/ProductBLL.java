@@ -28,7 +28,7 @@ public class ProductBLL {
         try {
             File f = new File(path + "/Product.csv");
             FileWriter w = new FileWriter(f);
-            w.write("ID; Name; Description; DateOfManufacture; TypeID; NationID; Price; Images; Status; \n");
+            w.write("ID; Name; Description; DateOfManufacture; TypeID; NationID; Price; Status; \n");
             for (ProductDTO productDTO : getListProduct()) {
                 w.write(productDTO.getProductID()+";\t"
                         +productDTO.getProductName()+";\t"
@@ -47,7 +47,7 @@ public class ProductBLL {
     }
     public void showProductTable(DefaultTableModel model){
         model.setRowCount(0);
-        Object data[] = new Object[9];
+        Object data[] = new Object[8];
         for (ProductDTO product : getListProduct()) {
             data[0] = product.getProductID();
             data[1] = product.getProductName();
@@ -56,8 +56,7 @@ public class ProductBLL {
             data[4] = product.getTypeID();
             data[5] = product.getNationID();
             data[6] = product.getPrice();
-            data[7] = product.getImages();
-            data[8] = product.getStatus();
+            data[7] = product.getStatus();
             model.addRow(data);
         }
     }

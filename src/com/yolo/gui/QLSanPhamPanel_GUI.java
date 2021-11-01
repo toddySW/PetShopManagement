@@ -26,7 +26,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     public QLSanPhamPanel_GUI() {
         initComponents();
         model = (DefaultTableModel) tblSanPham.getModel();
-        Object[] obj = {"ProductID", "ProductName", "Description", "DateOfManufacture", "TypeID", "nationID", "Price", "Images", "Status"};
+        Object[] obj = {"ProductID", "ProductName", "Description", "DateOfManufacture", "TypeID", "nationID", "Price", "Status"};
         for (Object object : obj) {
             model.addColumn(object);
         }
@@ -294,7 +294,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
             txTenLoaiSP.setText(tableGet(4));
             txtTenQuocGia.setText(tableGet(5));;
             txtGiaSP.setText(tableGet(6));
-            txtTrangThai.setText(tableGet(8));
+            txtTrangThai.setText(tableGet(7));
             txtMoTaSP.setText(tableGet(2));
         } catch (Exception e) {
         }

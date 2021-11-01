@@ -290,6 +290,7 @@ public class QLNhanVienPanel_GUI extends javax.swing.JPanel {
             txtMaNhanVien.setText(tableGet(0));
             txtTenNhanVien.setText(tableGet(1));
             txtPhone.setText(tableGet(5));
+            txtEmail.setText(tableGet(7));
             txtUserName.setText(tableGet(8));;
             txtPassword.setText(tableGet(9));
             txtTrangThai.setText(tableGet(10));

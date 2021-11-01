@@ -37,7 +37,6 @@ public class ProductDAO {
                 product.setTypeID(rs.getString("TypeID"));
                 product.setNationID(rs.getString("NationID"));
                 product.setPrice(rs.getInt("Price"));
-                product.setImages(rs.getString("Images"));
                 product.setStatus(rs.getInt("Status"));
                 arr.add(product);  
             }
@@ -50,8 +49,8 @@ public class ProductDAO {
     }
     
     public boolean addProduct(ProductDTO product) {
-        String sql = "INSERT INTO `product`(`ProductName`, `Description`, `DateOfManufacture`, `TypeID`, `nationID`, `Price`, `Images`, `Status`) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `product`(`ProductName`, `Description`, `DateOfManufacture`, `TypeID`, `nationID`, `Price`, `Status`) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, product.getProductName());
@@ -60,8 +59,7 @@ public class ProductDAO {
             st.setString(4, product.getTypeID());
             st.setString(5, product.getNationID());
             st.setInt(6, product.getPrice());
-            st.setString(7, product.getImages());
-            st.setInt(8, product.getStatus());
+            st.setInt(7, product.getStatus());
             st.executeUpdate();
             st.close();
             db.closeConnect();

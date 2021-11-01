@@ -7,13 +7,10 @@ package com.yolo.dao;
 
 import com.yolo.dto.OrderDTO;
 import com.yolo.dto.OrderDetailDTO;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,7 +55,7 @@ public class OrderDAO {
                 OrderDetailDTO orderDetail = new OrderDetailDTO();
                 orderDetail.setOrderID(rs.getInt("OrderID"));
                 orderDetail.setProductID(rs.getInt("ProductID"));
-                orderDetail.setProductID(rs.getInt("Quantity"));
+                orderDetail.setQuanlity(rs.getInt("Quantity"));
                 orderDetail.setStatus(rs.getInt("Status"));
                 arr.add(orderDetail);  
             }
