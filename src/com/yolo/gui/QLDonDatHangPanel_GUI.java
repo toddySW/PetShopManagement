@@ -59,7 +59,6 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         txtTenNhanVien = new javax.swing.JTextField();
@@ -81,16 +80,8 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
 
         jLabel9.setText("Ngày đặt hàng");
 
-        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
-        btnCapNhat.setText("Cập nhật");
-        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCapNhatActionPerformed(evt);
-            }
-        });
-
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Button-Close-icon-16.png"))); // NOI18N
-        btnXoa.setText("Xóa");
+        btnXoa.setText("Thanh toán");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -125,9 +116,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
                         .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCapNhat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(96, 96, 96))
         );
         jPanel2Layout.setVerticalGroup(
@@ -147,9 +136,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
                             .addComponent(jLabel8)
                             .addComponent(btnLuu)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtMaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCapNhat))
+                        .addComponent(txtMaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnXoa)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,26 +260,8 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        // TODO add your handling code here:
-        orderDTO.setOrderID(Integer.parseInt(txtMaDon.getText()));
-        for (CustomerDTO customerDTO : orderBLL.listCustomer) {
-            
-        }
-        orderDTO.setCustomerID(Integer.parseInt(txtTenKhachHang.getText()));
-        orderDTO.setOrderDate(txtTenNhanVien.getText());
-        orderDTO.setStatus(Integer.parseInt(txtNgayDat.getText()));
-        if (orderBLL.updateOrder(orderDTO)) {
-            resetTable();
-            JOptionPane.showMessageDialog(this, "success");
-        }  else {
-            JOptionPane.showMessageDialog(this, "fail");
-        }
-    }//GEN-LAST:event_btnCapNhatActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel1;
