@@ -5,17 +5,36 @@
  */
 package com.yolo.gui;
 
+import com.yolo.bll.OrderBLL;
+import com.yolo.dto.OrderDTO;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
-
+    OrderBLL orderBLL = new OrderBLL();
+    OrderDTO orderDTO = new OrderDTO();
+    DefaultTableModel model, model2;
+    int row;
     /**
      * Creates new form QLDonDatHangPanel_GUI
      */
     public QLDonDatHangPanel_GUI() {
         initComponents();
+        model = (DefaultTableModel) tblDonDatHang.getModel();
+        model2 = (DefaultTableModel) tblChiTietDonDatHang.getModel();
+        Object[] obj = {"OrderID", "OrderDate", "CustomerID", "StaffID", "Status"};
+        for (Object object : obj) {
+            model.addColumn(object);
+        }
+        Object[] objD = {"OrderID", "ProductID", "Quanlity", "Status"};
+        for (Object object : objD) {
+           model2.addColumn(object);
+        }
+        orderBLL.showOrderTable(model);
     }
 
     /**
@@ -51,6 +70,8 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDonDatHang = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblChiTietDonDatHang = new javax.swing.JTable();
 
         jLabel1.setText("ĐƠN ĐẶT HÀNG");
 
@@ -71,9 +92,19 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
 
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Button-Close-icon-16.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
@@ -152,24 +183,25 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        tblDonDatHang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        tblDonDatHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDonDatHangMouseClicked(evt);
             }
-        ));
+        });
         jScrollPane2.setViewportView(tblDonDatHang);
+
+        jScrollPane3.setViewportView(tblChiTietDonDatHang);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(2, 2, 2)
@@ -187,8 +219,10 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(350, 350, 350))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(287, 287, 287))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,7 +240,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1060, Short.MAX_VALUE)
+            .addGap(0, 1110, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -214,13 +248,67 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 803, Short.MAX_VALUE)
+            .addGap(0, 671, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    private String tableGet(int column){ 
+        return model.getValueAt(row, column).toString();
+    }
+    private void formNull(){
+        txtMaDon.setText("");
+        txtNgayDatHang.setText("");
+        txtTenDon.setText("");
+        txtTenKhachHang.setText("");
+        txtTenNhanVien.setText("");
+        txtTrangThai.setText("");
+    }
+    
+    private void resetTable(){
+        model.setRowCount(0);
+        orderBLL.showOrderTable(model);
+    }
+    private void tblDonDatHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonDatHangMouseClicked
+        // TODO add your handling code here:
+        formNull();
+        row = tblDonDatHang.getSelectedRow();
+        txtMaDon.setText(tableGet(0));
+        txtNgayDatHang.setText(tableGet(1));
+        txtTenDon.setText("");
+        txtTenKhachHang.setText(tableGet(2));
+        txtTenNhanVien.setText(tableGet(3));
+        txtTrangThai.setText(tableGet(4));
+        orderBLL.showDetailOrder(model2, Integer.parseInt(tableGet(0)));
+    }//GEN-LAST:event_tblDonDatHangMouseClicked
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        if (orderBLL.deleteOrder(Integer.parseInt(txtMaDon.getText()))) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }  else {
+            JOptionPane.showMessageDialog(this, "fail");
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        // TODO add your handling code here:
+        orderDTO.setOrderID(Integer.parseInt(txtMaDon.getText()));
+        orderDTO.setCustomerID(Integer.parseInt(txtTenKhachHang.getText()));
+        orderDTO.setStaffID(Integer.parseInt(txtTenNhanVien.getText()));
+        orderDTO.setOrderDate(txtNgayDatHang.getText());
+        orderDTO.setStatus(Integer.parseInt(txtTrangThai.getText()));
+        if (orderBLL.updateOrder(orderDTO)) {
+            resetTable();
+            JOptionPane.showMessageDialog(this, "success");
+        }  else {
+            JOptionPane.showMessageDialog(this, "fail");
+        }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -239,8 +327,10 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTable tblChiTietDonDatHang;
     private javax.swing.JTable tblDonDatHang;
     private javax.swing.JTextField txtMaDon;
     private javax.swing.JTextField txtNgayDatHang;
