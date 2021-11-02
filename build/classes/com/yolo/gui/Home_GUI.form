@@ -186,7 +186,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" pref="978" max="32767" attributes="0"/>
+          <Component id="jToolBar1" pref="979" max="32767" attributes="0"/>
           <Component id="tabpaneMainBroad" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
