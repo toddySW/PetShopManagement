@@ -49,16 +49,16 @@ public class ProductDAO {
     
     public boolean addProduct(ProductDTO product) {
         String sql = "INSERT INTO `product`(`ProductName`, `Description`, `DateOfManufacture`, `TypeID`, `nationID`, `Price`, `status`) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, now(), ?, ?, ?, ?)";
         try {
             PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
             st.setString(1, product.getProductName());
             st.setString(2, product.getDescription());
-            st.setDate(3, (Date) product.getDateOfManufacture());
-            st.setInt(4, product.getTypeID());
-            st.setString(5, product.getNationID());
-            st.setInt(6, product.getPrice());
-            st.setInt(7, 0);
+//            st.setDate(3, (Date) product.getDateOfManufacture());
+            st.setInt(3, product.getTypeID());
+            st.setString(4, product.getNationID());
+            st.setInt(5, product.getPrice());
+            st.setInt(6, 0);
             st.executeUpdate();
             st.close();
             db.closeConnect();

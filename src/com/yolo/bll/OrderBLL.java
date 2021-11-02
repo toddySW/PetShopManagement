@@ -74,7 +74,7 @@ public class OrderBLL {
         model.setRowCount(0);
         Object data[] = new Object[4];
         for (OrderDetailDTO orderD : getListOrderDetail(id)) {
-            data[0] = orderD.getOrderID();
+            data[0] = orderD.getProductID();
             int pid = orderD.getProductID();
             for (ProductDTO productDTO : listProduct) {
                 int xid = productDTO.getProductID();
@@ -86,6 +86,16 @@ public class OrderBLL {
             data[3] = orderD.getStatus();
             model.addRow(data);
         }
+    }
+
+    public boolean updateOrderDetail(OrderDetailDTO orderDetailDTO) {
+        return orderDAO.updateOrderDetail(orderDetailDTO);
+    }
+    public boolean deleteOrderDetail(OrderDetailDTO orderDetailDTO) {
+        return orderDAO.deleteOrderDetail(orderDetailDTO);
+    }
+    public boolean dOrdder(int id){
+        return orderDAO.dOrder(id);
     }
 }
 

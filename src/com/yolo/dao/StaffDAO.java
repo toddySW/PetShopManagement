@@ -54,18 +54,19 @@ public class StaffDAO {
     
     public boolean login(String userName, String passWord){
         String sql = "select * from staff where username = '" + userName +"' and password = '"+ passWord +"'";
+        boolean flag = false;
         try {
             Statement st = db.Connect().createStatement();
             ResultSet rs = st.executeQuery(sql);
             
             if (rs.next()) {
-                return true;
+                flag = true;
             }   
             db.closeConnect();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(StaffDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        return false;
+        return flag;
     }
     
     public String[] quenMKUserName(String userName){

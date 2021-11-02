@@ -23,7 +23,7 @@ public class OrderDAO {
     DatabaseServices db = new DatabaseServices();
     
     public ArrayList<OrderDTO> getListOrder(){
-        String sql = "SELECT * FROM Orderpro";
+        String sql = "SELECT * FROM Orderpro where status != 1";
         ArrayList<OrderDTO> arr = new ArrayList<OrderDTO>();        
         try {
             Statement st = db.Connect().createStatement();
@@ -80,6 +80,20 @@ public class OrderDAO {
         }
         return true;
     }
+    public boolean dOrder(int id) {
+        String sql = "DELETE FROM `orderpro` WHERE orderID = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
     
     public boolean updateOrder(OrderDTO order) {
         String sql = "UPDATE `orderpro` SET "
@@ -93,6 +107,40 @@ public class OrderDAO {
             st.setInt(2, order.getCustomerID());
             st.setInt(3, order.getStatus());
             st.setInt(4, order.getOrderID());
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } 
+        return true;
+    }
+    public boolean updateOrderDetail(OrderDetailDTO orderDetailDTO) {
+        String sql = "UPDATE `orderdetail` SET "
+                + "`quantity` = ? "
+                + "WHERE `orderID` = ? and productid = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(1, orderDetailDTO.getQuanlity());
+            st.setInt(2, orderDetailDTO.getOrderID());
+            st.setInt(3, orderDetailDTO.getProductID());
+            st.executeUpdate();
+            st.close();
+            db.closeConnect();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } 
+        return true;
+    }
+    
+    public boolean deleteOrderDetail(OrderDetailDTO orderDetailDTO) {
+        String sql = "DELETE FROM `orderdetail` WHERE `ProductID` = ? and orderID = ?";
+        try {
+            PreparedStatement st = (PreparedStatement) db.Connect().prepareStatement(sql);
+            st.setInt(2, orderDetailDTO.getOrderID());
+            st.setInt(1, orderDetailDTO.getProductID());
             st.executeUpdate();
             st.close();
             db.closeConnect();

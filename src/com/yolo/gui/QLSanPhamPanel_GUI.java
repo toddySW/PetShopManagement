@@ -35,6 +35,12 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
             model.addColumn(object);
         }
         productBLL.showProductTable(model);
+        for (TypeDTO typeDTO : productBLL.listType) {
+            cbLoai.addItem(typeDTO.getTypeName());
+        }
+        for (NationDTO nationDTO : productBLL.listNation) {
+            cbQuocGia.addItem(nationDTO.getNationName());
+        }
     }
 
     /**
@@ -55,9 +61,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txTenLoaiSP = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtTenQuocGia = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtGiaSP = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -67,6 +71,8 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
+        cbLoai = new javax.swing.JComboBox<>();
+        cbQuocGia = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
@@ -138,13 +144,13 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(txtTenSP, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                    .addComponent(txtMaSP)
-                    .addComponent(txTenLoaiSP)
-                    .addComponent(txtTenQuocGia)
-                    .addComponent(txtGiaSP))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbQuocGia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTenSP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                    .addComponent(txtMaSP, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtGiaSP, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbLoai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,15 +183,15 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
-                                .addGap(10, 10, 10)
+                                .addGap(13, 13, 13)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txTenLoaiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
-                                .addGap(10, 10, 10)
+                                    .addComponent(jLabel6)
+                                    .addComponent(cbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtTenQuocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(10, 10, 10)
+                                    .addComponent(jLabel8)
+                                    .addComponent(cbQuocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7))))
@@ -193,7 +199,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))))
-                .addGap(46, 46, 46))
+                .addGap(31, 31, 31))
         );
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
@@ -237,7 +243,7 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
                                 .addGap(30, 30, 30)
                                 .addComponent(jLabel5))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 126, Short.MAX_VALUE)))
+                        .addGap(0, 125, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -263,12 +269,12 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         productDTO.setProductName(txtTenSP.getText());
         productDTO.setDescription(txtMoTaSP.getText());
         for (NationDTO nationDTO : productBLL.listNation) {
-            if (txtTenQuocGia.getText().equals(nationDTO.getNationName())) {
+            if (cbQuocGia.getSelectedItem().equals(nationDTO.getNationName())) {
                 productDTO.setNationID(nationDTO.getNationID());
             }
         }
         for (TypeDTO typeDTO : productBLL.listType) {
-            if (txTenLoaiSP.getText().equals(typeDTO.getTypeName())) {
+            if (cbLoai.getSelectedItem().equals(typeDTO.getTypeName())) {
                 productDTO.setTypeID(typeDTO.getTypeID());
             }
         }
@@ -290,8 +296,8 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
             txtMaSP.setText(tableGet(0));
             txtTenSP.setText(tableGet(1));
             txtMoTaSP.setText(tableGet(2));
-            txTenLoaiSP.setText(tableGet(4));
-            txtTenQuocGia.setText(tableGet(5));;
+            cbLoai.setSelectedItem(tableGet(4));
+            cbQuocGia.setSelectedItem(tableGet(5));;
             txtGiaSP.setText(tableGet(6));
             
         } catch (Exception e) {
@@ -317,12 +323,12 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         productDTO.setProductName(txtTenSP.getText());
         productDTO.setDescription(txtMoTaSP.getText());
         for (NationDTO nationDTO : productBLL.listNation) {
-            if (txtTenQuocGia.getText().equals(nationDTO.getNationName())) {
+            if (cbQuocGia.getSelectedItem().equals(nationDTO.getNationName())) {
                 productDTO.setNationID(nationDTO.getNationID());
             }
         }
         for (TypeDTO typeDTO : productBLL.listType) {
-            if (txTenLoaiSP.getText().equals(typeDTO.getTypeName())) {
+            if (cbLoai.getSelectedItem().equals(typeDTO.getTypeName())) {
                 productDTO.setTypeID(typeDTO.getTypeID());
             }
         }
@@ -351,11 +357,11 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
         return model.getValueAt(row, column).toString();
     }
     private void formNull(){
-        txTenLoaiSP.setText("");
+        cbLoai.setSelectedItem("");
         txtGiaSP.setText("");
         txtMaSP.setText("");
         txtMoTaSP.setText("");
-        txtTenQuocGia.setText("");
+        cbQuocGia.setSelectedItem("");
         txtTenSP.setText("");
     }
     
@@ -368,6 +374,8 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnTaoMoi;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JComboBox<String> cbLoai;
+    private javax.swing.JComboBox<String> cbQuocGia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -382,11 +390,9 @@ public class QLSanPhamPanel_GUI extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable tblSanPham;
-    private javax.swing.JTextField txTenLoaiSP;
     private javax.swing.JTextField txtGiaSP;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JTextArea txtMoTaSP;
-    private javax.swing.JTextField txtTenQuocGia;
     private javax.swing.JTextField txtTenSP;
     // End of variables declaration//GEN-END:variables
 }
