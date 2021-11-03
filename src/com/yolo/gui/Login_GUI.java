@@ -39,12 +39,12 @@ public class Login_GUI extends javax.swing.JFrame {
         txtUserName = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         labQuenMK = new javax.swing.JLabel();
         lbExit = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,13 +68,6 @@ public class Login_GUI extends javax.swing.JFrame {
         jLabel10.setText("Đăng Nhập");
         jLabel10.setToolTipText("");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 276, -1));
-
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 237, 29));
 
         btnDangNhap.setBackground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setForeground(new java.awt.Color(0, 153, 0));
@@ -122,6 +115,8 @@ public class Login_GUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 35, -1, -1));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 237, 30));
+        txtPassword.getAccessibleContext().setAccessibleParent(jLabel11);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/login_GUI.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 500));
@@ -142,10 +137,6 @@ public class Login_GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
@@ -228,7 +219,7 @@ public class Login_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labQuenMK;
     private javax.swing.JLabel lbExit;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

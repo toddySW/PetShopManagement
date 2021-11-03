@@ -79,7 +79,11 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
 
         jLabel2.setText("Mã đơn ");
 
+        txtNgayDat.setEditable(false);
+
         jLabel6.setText("Tên khách hàng");
+
+        txtTenKhachHang.setEditable(false);
 
         jLabel8.setText("Tên nhân viên");
 
@@ -95,6 +99,8 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
+
+        txtTenNhanVien.setEditable(false);
 
         jLabel1.setText("ĐƠN ĐẶT HÀNG");
 
@@ -246,7 +252,7 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
                     .addComponent(jScrollPane2)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane3))
                 .addContainerGap())
@@ -311,39 +317,47 @@ public class QLDonDatHangPanel_GUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (orderBLL.deleteOrder(Integer.parseInt(txtMaDon.getText()))) {
             resetTable();
-            JOptionPane.showMessageDialog(this, "success");
+            JOptionPane.showMessageDialog(this, "Thanh toán thành công");
         }  else {
-            JOptionPane.showMessageDialog(this, "fail");
+            JOptionPane.showMessageDialog(this, "Thanh toán không thành công");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnCapNhat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhat2ActionPerformed
         // TODO add your handling code here:
-        orderDetailDTO.setProductID(Integer.parseInt(txtMaSanPham.getText()));
-        orderDetailDTO.setQuanlity((int) spSL.getValue());
-        orderDetailDTO.setOrderID(Integer.parseInt(txtMaDon.getText()));
-        if ((int) spSL.getValue() == 0) {
-                if (orderBLL.deleteOrderDetail(orderDetailDTO)) {
-                model2.setRowCount(0);
-                orderBLL.showDetailOrder(model2, Integer.parseInt(tableGet(0)));
-                    if (model2.getRowCount() == 0) {
-                        if (orderBLL.dOrdder(Integer.parseInt(txtMaDon.getText()))) {
-                            model.setRowCount(0);
-                            orderBLL.showOrderTable(model);
-                        } 
-                    }
-                JOptionPane.showMessageDialog(this, "success");
+        
+        if ((int) spSL.getValue() >= 0) {
+            orderDetailDTO.setProductID(Integer.parseInt(txtMaSanPham.getText()));
+            orderDetailDTO.setQuanlity((int) spSL.getValue());
+            orderDetailDTO.setOrderID(Integer.parseInt(txtMaDon.getText()));
+            if ((int) spSL.getValue() == 0) {
+                    if (orderBLL.deleteOrderDetail(orderDetailDTO)) {
+                    model2.setRowCount(0);
+                    orderBLL.showDetailOrder(model2, Integer.parseInt(tableGet(0)));
+                        if (model2.getRowCount() == 0) {
+                            if (orderBLL.dOrdder(Integer.parseInt(txtMaDon.getText()))) {
+                                model.setRowCount(0);
+                                orderBLL.showOrderTable(model);
+                            } 
+                        }
+                    JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cập nhật khônng thành công");
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "fail");
+                if (orderBLL.updateOrderDetail(orderDetailDTO)) {
+                    model2.setRowCount(0);
+                    orderBLL.showDetailOrder(model2, Integer.parseInt(tableGet(0)));
+                    JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Cập nhật không thành công");
+                }
             }
+            txtMaSanPham.setText("");
+            txtTenSanPham.setText("");
+            spSL.setValue(0);
         } else {
-            if (orderBLL.updateOrderDetail(orderDetailDTO)) {
-                model2.setRowCount(0);
-                orderBLL.showDetailOrder(model2, Integer.parseInt(tableGet(0)));
-                JOptionPane.showMessageDialog(this, "success");
-            } else {
-                JOptionPane.showMessageDialog(this, "fail");
-            }
+            JOptionPane.showMessageDialog(this, "Số lượng không được < 0");
         }
     }//GEN-LAST:event_btnCapNhat2ActionPerformed
 

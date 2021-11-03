@@ -17,7 +17,6 @@ public class Home_GUI extends javax.swing.JFrame {
     private QLNguonPhamPanel_GUI qLNguonPhamPanel;
     private QLKhachHangPanel_GUI qLKhachHangPanel;
     private QLDonDatHangPanel_GUI qLDonDatHangPanel;
-    private QLThongKe_GUI qLThongKePanel;
     private IntroductionPanel_GUI gioithieuPanel;
     /**
      * Creates new form Management_GUI
@@ -28,7 +27,12 @@ public class Home_GUI extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/logo.png")).getImage());
         //canh giữa màn hình khi run form
         setLocationRelativeTo(null); 
-        
+        if (gioithieuPanel == null){ 
+            gioithieuPanel = new IntroductionPanel_GUI();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"));
+            tabpaneMainBroad.addTab("Giới thiệu", icon, gioithieuPanel, "Giới thiệu");
+        }
+        tabpaneMainBroad.setSelectedComponent(gioithieuPanel);
     }
 
     /**
@@ -54,7 +58,6 @@ public class Home_GUI extends javax.swing.JFrame {
         jSeparator12 = new javax.swing.JToolBar.Separator();
         jButton6 = new javax.swing.JButton();
         jSeparator13 = new javax.swing.JToolBar.Separator();
-        jSeparator14 = new javax.swing.JToolBar.Separator();
         jButton7 = new javax.swing.JButton();
         tabpaneMainBroad = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -73,9 +76,7 @@ public class Home_GUI extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         mnItem_QLNhanVien = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
-        mnItem_QLThongKe = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         mnITemGioiThieu = new javax.swing.JMenuItem();
 
@@ -162,7 +163,6 @@ public class Home_GUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton6);
         jToolBar1.add(jSeparator13);
-        jToolBar1.add(jSeparator14);
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-help-about-icon-32.png"))); // NOI18N
         jButton7.setText("Giới thiệu");
@@ -181,6 +181,11 @@ public class Home_GUI extends javax.swing.JFrame {
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/logout-icon-16.png"))); // NOI18N
         jMenuItem1.setText("Đăng xuất ");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator2);
 
@@ -248,23 +253,9 @@ public class Home_GUI extends javax.swing.JFrame {
         jMenu2.add(mnItem_QLNhanVien);
         jMenu2.add(jSeparator15);
 
-        mnItem_QLThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"))); // NOI18N
-        mnItem_QLThongKe.setText("Thống kê");
-        mnItem_QLThongKe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnItem_QLThongKeActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mnItem_QLThongKe);
-
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Trợ giúp");
-
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-help-about-icon-16.png"))); // NOI18N
-        jMenuItem6.setText("Nội dung");
-        jMenu3.add(jMenuItem6);
         jMenu3.add(jSeparator4);
 
         mnITemGioiThieu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -347,16 +338,6 @@ public class Home_GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mnItem_QLDonHangActionPerformed
 
-    private void mnItem_QLThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_QLThongKeActionPerformed
-        //Hiện trang Thống kê lên trang Home
-        if (qLThongKePanel== null){ 
-            qLThongKePanel = new QLThongKe_GUI();
-            ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Actions-document-edit-icon-16.png"));
-            tabpaneMainBroad.addTab("Thống kê", icon, qLThongKePanel, "Thống kê");
-        }
-        tabpaneMainBroad.setSelectedComponent(qLThongKePanel);
-    }//GEN-LAST:event_mnItem_QLThongKeActionPerformed
-
     private void mnItem_QLNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItem_QLNhanVienActionPerformed
         //Hiện trang Thống kê lên trang Home
     }//GEN-LAST:event_mnItem_QLNhanVienActionPerformed
@@ -418,7 +399,7 @@ public class Home_GUI extends javax.swing.JFrame {
             ImageIcon icon = new ImageIcon(getClass().getResource("/com/yolo/gui/iconset4/Apps-preferences-desktop-user-password-icon-16.png"));
             tabpaneMainBroad.addTab("Giới thiệu", icon, gioithieuPanel, "Giới thiệu");
         }
-        tabpaneMainBroad.setSelectedComponent( qLDonDatHangPanel);
+        tabpaneMainBroad.setSelectedComponent(gioithieuPanel);
     }//GEN-LAST:event_mnITemGioiThieuActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -436,14 +417,20 @@ public class Home_GUI extends javax.swing.JFrame {
         new Login_GUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new Login_GUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     
-    public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home_GUI().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Home_GUI().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -459,13 +446,11 @@ public class Home_GUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
     private javax.swing.JToolBar.Separator jSeparator12;
     private javax.swing.JToolBar.Separator jSeparator13;
-    private javax.swing.JToolBar.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
@@ -478,7 +463,6 @@ public class Home_GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnITemGioiThieu;
     private javax.swing.JMenuItem mnItem_QLDonHang;
     private javax.swing.JMenuItem mnItem_QLNhanVien;
-    private javax.swing.JMenuItem mnItem_QLThongKe;
     private javax.swing.JMenuItem mnItem_qlLoaiSanPham;
     private javax.swing.JMenuItem mnItem_qlNguonPham;
     private javax.swing.JMenuItem mnItem_qlSanPham;
