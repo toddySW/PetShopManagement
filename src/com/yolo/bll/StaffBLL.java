@@ -110,8 +110,8 @@ public class StaffBLL {
             String accountPassword = "umbala@000";
             String from = "admin";
             String to = email;
-            String body = pass;
-            String subject = "okkkkk";
+            String body = "Mật khẩu của bạn là: " + pass;
+            String subject = "Lấy lại mật khẩu - PetShopManagement";
             
             Properties p = new Properties();
             p.put("mail.smtp.auth", "true");
